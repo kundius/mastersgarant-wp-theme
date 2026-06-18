@@ -1,0 +1,66 @@
+:root {
+  --container-width: 100%;
+  --container-padding: 12px;
+  --container-content: calc(var(--container-width) - (var(--container-padding) * 2));
+  --header-height: 96px;
+
+  @media (--min-md) {
+    --container-width: 768px;
+    --container-padding: 16px;
+  }
+
+  @media (--min-lg) {
+    --container-width: 1024px;
+    --container-padding: 16px;
+  }
+
+  @media (--min-xl) {
+    --container-width: 1280px;
+    --container-padding: 24px;
+  }
+
+  @media (--min-2xl) {
+    --container-width: 1536px;
+    --container-padding: 36px;
+  }
+}
+
+@media (--max-lg) {
+  :root {
+    --header-height: 80px;
+  }
+}
+
+@media (--max-md) {
+  :root {
+    --header-height: 64px;
+  }
+}
+
+@media screen and (max-width: 600px) {
+  #wpadminbar {
+    position: fixed;
+  }
+}
+
+*,
+*::before,
+*::after {
+  box-sizing: border-box;
+}
+
+body {
+  font-family: 'Montserrat', sans-serif;
+  line-height: 1.5;
+  font-size: 16px;
+  background: #fff;
+}
+
+.container {
+  max-width: 100%;
+  width: var(--container-width);
+  padding-left: var(--container-padding);
+  padding-right: var(--container-padding);
+  margin-left: auto;
+  margin-right: auto;
+}
