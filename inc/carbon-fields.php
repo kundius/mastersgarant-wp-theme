@@ -44,24 +44,23 @@ function register_carbon_fields_blocks()
       Field::make('textarea', 'crb_seo_description', 'Описание'),
     ]);
 
-  Container::make('theme_options', 'Параметры')
-    ->add_tab('Общее', [
-      Field::make('image', 'crb_theme_site_logo', 'Логотип'),
-      Field::make('textarea', 'crb_theme_site_name', 'Название сайта')->set_rows(2),
-      Field::make('text', 'crb_theme_phone_number', 'Телефон / Номер'),
-      Field::make('text', 'crb_theme_phone_time', 'Телефон / Время работы'),
-      Field::make('text', 'crb_theme_phone_caption', 'Телефон / Подпись'),
-      Field::make('text', 'crb_theme_max_link', 'MAX'),
-      Field::make('text', 'crb_theme_email', 'E-mail'),
-      Field::make('textarea', 'crb_theme_address', 'Адерс')->set_rows(2),
-      Field::make('textarea', 'crb_theme_legal', 'Юридическая информация')->set_rows(2),
-      Field::make('textarea', 'crb_theme_counters', 'Счетчики')->set_rows(2),
-      Field::make('textarea', 'crb_theme_copyright', 'Копирайт')->set_rows(2),
-      // Field::make('complex', 'crb_theme_messengers', 'Мессенджеры')->add_fields([
-      //   Field::make('text', 'link', 'Ссылка'),
-      //   Field::make('textarea', 'icon', 'Код иконки')->set_rows(2),
-      // ]),
-    ]);
+  Container::make('theme_options', 'Параметры')->add_tab('Общее', [
+    Field::make('image', 'crb_theme_site_logo', 'Логотип'),
+    Field::make('textarea', 'crb_theme_site_name', 'Название сайта')->set_rows(2),
+    Field::make('text', 'crb_theme_phone_number', 'Телефон / Номер'),
+    Field::make('text', 'crb_theme_phone_time', 'Телефон / Время работы'),
+    Field::make('text', 'crb_theme_phone_caption', 'Телефон / Подпись'),
+    Field::make('text', 'crb_theme_max_link', 'MAX'),
+    Field::make('text', 'crb_theme_email', 'E-mail'),
+    Field::make('textarea', 'crb_theme_address', 'Адерс')->set_rows(2),
+    Field::make('textarea', 'crb_theme_legal', 'Юридическая информация')->set_rows(2),
+    Field::make('textarea', 'crb_theme_counters', 'Счетчики')->set_rows(2),
+    Field::make('textarea', 'crb_theme_copyright', 'Копирайт')->set_rows(2),
+    // Field::make('complex', 'crb_theme_messengers', 'Мессенджеры')->add_fields([
+    //   Field::make('text', 'link', 'Ссылка'),
+    //   Field::make('textarea', 'icon', 'Код иконки')->set_rows(2),
+    // ]),
+  ]);
 
   Container::make('post_meta', 'Лендинг')
     ->where('post_type', '=', 'page')
@@ -74,17 +73,27 @@ function register_carbon_fields_blocks()
       Field::make('complex', 'intro_advantages', 'Преимущества')->add_fields([
         Field::make('textarea', 'text', 'Текст')->set_rows(2),
       ]),
+    ])
+    ->add_tab('Срочный выезд', [
+      Field::make('textarea', 'emergency_departure_title', 'Заголовок')->set_rows(3),
+      Field::make('text', 'emergency_departure_speed', 'Скорость (текст)'),
+      Field::make('textarea', 'emergency_departure_desc', 'Описание')->set_rows(5),
+      Field::make('textarea', 'emergency_departure_discount_title', 'Скидка / Заголовок')->set_rows(
+        3,
+      ),
+      Field::make('text', 'emergency_departure_discount_value', 'Скидка / Значение'),
+      Field::make('image', 'emergency_departure_bg_image', 'Фоновая картинка'),
     ]);
-    // ->add_tab('Услуги', [
-    //   Field::make('complex', 'services', 'Услуги')->add_fields([
-    //     Field::make('image', 'photo', 'Фото'),
-    //     Field::make('text', 'shift', 'Сдвинуть фото'),
-    //     Field::make('text', 'short_name', 'Короткое название'),
-    //     Field::make('textarea', 'full_name', 'Полное название')->set_rows(2),
-    //     Field::make('textarea', 'content', 'Описание')->set_rows(4),
-    //     Field::make('text', 'link', 'Ссылка'),
-    //   ]),
-    // ]);
+  // ->add_tab('Услуги', [
+  //   Field::make('complex', 'services', 'Услуги')->add_fields([
+  //     Field::make('image', 'photo', 'Фото'),
+  //     Field::make('text', 'shift', 'Сдвинуть фото'),
+  //     Field::make('text', 'short_name', 'Короткое название'),
+  //     Field::make('textarea', 'full_name', 'Полное название')->set_rows(2),
+  //     Field::make('textarea', 'content', 'Описание')->set_rows(4),
+  //     Field::make('text', 'link', 'Ссылка'),
+  //   ]),
+  // ]);
 
   // Block::make('partials_services', 'Блок "Выбирайте отдых для себя"')
   //   ->add_fields([

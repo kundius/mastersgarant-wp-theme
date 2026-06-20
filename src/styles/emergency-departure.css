@@ -1,0 +1,440 @@
+/* ---------- Блок emergency-departure ---------- */
+.emergency-departure {
+  margin-top: -64px;
+  position: relative;
+  z-index: 60;
+  background-color: #058bfd;
+  background-image: url('../images/bg-emergency-departure.webp');
+  background-size: cover;
+  background-position: 100% 100%;
+  background-repeat: no-repeat;
+  color: #ffffff;
+  border-radius: 40px;
+  position: relative;
+  max-width: 1792px;
+  margin-left: auto;
+  margin-right: auto;
+  width: calc(100% - (100vw - var(--container-width)) / 2);
+  padding-top: 128px;
+  padding-bottom: 128px;
+}
+
+@media (--max-2xl) {
+  .emergency-departure {
+    padding-top: 96px;
+    padding-bottom: 96px;
+  }
+}
+
+@media (--max-xl) {
+  .emergency-departure {
+    padding-top: 64px;
+    padding-bottom: 64px;
+  }
+}
+
+@media (--max-lg) {
+  .emergency-departure {
+    margin-top: -64px;
+  }
+}
+
+@media (--max-md) {
+  .emergency-departure {
+    margin-top: -44px;
+  }
+}
+
+.emergency-departure__layout {
+  display: grid;
+  grid-template-columns: 400px 400px 1fr;
+  align-items: center;
+  gap: 96px;
+  position: relative;
+  z-index: 2;
+}
+
+@media (--max-2xl) {
+  .emergency-departure__layout {
+    zoom: 0.8;
+  }
+}
+
+@media (--max-xl) {
+  .emergency-departure__layout {
+    zoom: 0.7;
+  }
+}
+
+@media (--max-lg) {
+  .emergency-departure__layout {
+    zoom: 1;
+  }
+}
+
+/* ---------- Элементы блока (Левая часть) ---------- */
+.emergency-departure__left {
+  grid-column: 1;
+}
+
+.emergency-departure__center {
+  grid-column: 2;
+}
+
+.emergency-departure__right {
+  grid-column: 3;
+  align-self: flex-start;
+  position: relative;
+}
+
+.emergency-departure__title {
+  font-size: 56px;
+  line-height: 1.25;
+  font-weight: 700;
+  margin-bottom: 48px;
+}
+
+.emergency-departure__speed {
+  display: flex;
+  align-items: center;
+  gap: 16px;
+  justify-content: flex-start;
+}
+
+.emergency-departure__speed-text {
+  font-size: 32px;
+  font-weight: 600;
+}
+
+.emergency-departure__speed-icon {
+  display: block;
+  width: 40px;
+  height: 40px;
+  position: relative;
+}
+
+.emergency-departure__speed-icon::before {
+  content: '';
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  background-image: url('../images/icon-emergency-departure.webp');
+  background-size: contain;
+  background-position: center;
+  background-repeat: no-repeat;
+}
+
+/* ---------- Элементы блока (Центральная часть) ---------- */
+.emergency-departure__desc {
+  font-size: 18px;
+  margin-bottom: 48px;
+}
+
+.emergency-departure__contact {
+  display: flex;
+  align-items: center;
+  gap: 16px;
+  margin-bottom: 12px;
+}
+
+.emergency-departure__contact-label {
+  font-size: 22px;
+  font-weight: 400;
+}
+
+.emergency-departure__contact-button {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  width: 40px;
+  height: 40px;
+  background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+  color: #fff;
+  border-radius: 20px;
+  text-decoration: none;
+  transition: opacity 0.2s;
+}
+
+.emergency-departure__contact-button:hover {
+  opacity: 0.85;
+}
+
+.emergency-departure__contact-button .icon {
+  width: 22px;
+  height: 22px;
+}
+
+.emergency-departure__phone {
+  font-size: 30px;
+  font-weight: 700;
+  letter-spacing: 0.5px;
+}
+
+.emergency-departure__phone a {
+  color: inherit;
+  text-decoration: none;
+}
+
+.emergency-departure__schedule {
+  font-size: 18px;
+  margin-top: 12px;
+}
+
+/* ---------- Плавающий Бейдж со скидкой ---------- */
+.emergency-departure__discount {
+  position: absolute;
+  top: 0;
+  left: 0;
+  margin-left: -96px;
+  margin-top: -90px;
+  width: 180px;
+  height: 180px;
+  background-color: #151515;
+  border-radius: 50%;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  z-index: 2;
+  box-shadow: 0 5px 15px rgba(0, 0, 0, 0.3);
+  overflow: hidden;
+  /* Добавляем анимацию "плавания" */
+  animation: floatBadge 3s ease-in-out infinite;
+}
+
+/* Имитация серебряной полоски на бейдже через псевдоэлемент */
+.emergency-departure__discount::after {
+  content: '';
+  position: absolute;
+  top: -10%;
+  left: -10%;
+  width: 120%;
+  height: 120%;
+  background: radial-gradient(
+    circle at 20% 110%,
+    rgba(255, 255, 255, 0.4) 0%,
+    rgba(0, 0, 0, 0) 70%
+  );
+  pointer-events: none;
+}
+
+.emergency-departure__discount-title {
+  font-size: 20px;
+  text-align: center;
+  line-height: 1.25;
+  position: relative;
+  font-weight: 700;
+  z-index: 3;
+}
+
+.emergency-departure__discount-value {
+  font-size: 24px;
+  font-weight: 700;
+  line-height: 1.25;
+  color: #3da9ff;
+  position: relative;
+  z-index: 3;
+}
+
+/* Анимация "плавания" (парения) для бейджа */
+@keyframes floatBadge {
+  0% {
+    transform: translateY(0px);
+  }
+  50% {
+    transform: translateY(-10px);
+  }
+  100% {
+    transform: translateY(0px);
+  }
+}
+
+/* ---------- Адаптивность (Планшет) ---------- */
+@media (--max-lg) {
+  .emergency-departure {
+    padding-top: 64px;
+    padding-bottom: 64px;
+  }
+
+  .emergency-departure::before {
+    content: '';
+    position: absolute;
+    inset: 0;
+    background: rgba(5, 139, 253, 0.85);
+    border-radius: inherit;
+    z-index: 1;
+    pointer-events: none;
+  }
+
+  .emergency-departure__layout {
+    grid-template-columns: 1fr;
+    gap: 24px;
+  }
+
+  .emergency-departure__left {
+    grid-column: 1;
+    grid-row: 1;
+  }
+
+  .emergency-departure__right {
+    grid-column: 1;
+    grid-row: 2;
+    justify-self: center;
+    position: static;
+    min-height: 0;
+  }
+
+  .emergency-departure__center {
+    grid-column: 1;
+    grid-row: 3;
+  }
+
+  .emergency-departure__title {
+    font-size: 40px;
+    margin-bottom: 32px;
+    text-align: center;
+  }
+
+  .emergency-departure__speed {
+    justify-content: center;
+  }
+
+  .emergency-departure__speed-text {
+    font-size: 24px;
+  }
+
+  .emergency-departure__desc {
+    font-size: 16px;
+    margin-bottom: 32px;
+    text-align: center;
+  }
+
+  .emergency-departure__contact {
+    justify-content: center;
+  }
+
+  .emergency-departure__phone {
+    font-size: 24px;
+    text-align: center;
+  }
+
+  .emergency-departure__schedule {
+    text-align: center;
+  }
+
+  .emergency-departure__discount {
+    width: 140px;
+    height: 140px;
+    margin: 0 auto;
+    position: static;
+    transform: none;
+  }
+
+  .emergency-departure__discount-title {
+    font-size: 16px;
+  }
+
+  .emergency-departure__discount-value {
+    font-size: 20px;
+  }
+}
+
+/* ---------- Адаптивность (Мобильная) ---------- */
+@media (--max-md) {
+  .emergency-departure {
+    padding-top: 40px;
+    padding-bottom: 40px;
+    border-radius: 24px;
+  }
+
+  .emergency-departure::before {
+    content: '';
+    position: absolute;
+    inset: 0;
+    background: rgba(5, 139, 253, 0.85);
+    border-radius: inherit;
+    z-index: 1;
+    pointer-events: none;
+  }
+
+  .emergency-departure__layout {
+    grid-template-columns: 1fr;
+    gap: 16px;
+  }
+
+  .emergency-departure__left {
+    grid-column: 1;
+    grid-row: 1;
+  }
+
+  .emergency-departure__right {
+    grid-column: 1;
+    grid-row: 2;
+    justify-self: center;
+    position: static;
+    min-height: 0;
+  }
+
+  .emergency-departure__center {
+    grid-column: 1;
+    grid-row: 3;
+  }
+
+  .emergency-departure__title {
+    font-size: 28px;
+    margin-bottom: 20px;
+    text-align: center;
+  }
+
+  .emergency-departure__speed {
+    justify-content: center;
+  }
+
+  .emergency-departure__speed-text {
+    font-size: 18px;
+  }
+
+  .emergency-departure__speed-icon {
+    width: 28px;
+    height: 28px;
+  }
+
+  .emergency-departure__desc {
+    font-size: 14px;
+    margin-bottom: 20px;
+    text-align: center;
+  }
+
+  .emergency-departure__contact {
+    justify-content: center;
+  }
+
+  .emergency-departure__phone {
+    font-size: 20px;
+    text-align: center;
+  }
+
+  .emergency-departure__schedule {
+    font-size: 14px;
+    text-align: center;
+  }
+
+  .emergency-departure__discount {
+    width: 100px;
+    height: 100px;
+    margin: 0 auto;
+    position: static;
+    transform: none;
+    animation: floatBadge 3s ease-in-out infinite;
+  }
+
+  .emergency-departure__discount-title {
+    font-size: 13px;
+  }
+
+  .emergency-departure__discount-value {
+    font-size: 18px;
+  }
+}

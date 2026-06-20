@@ -64,3 +64,9 @@ body {
   margin-left: auto;
   margin-right: auto;
 }
+
+.container--wide {
+  @media (--min-xl) {
+    width: calc(var(--container-width) + 360px);
+  }
+}
