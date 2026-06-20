@@ -165,156 +165,128 @@ Template Name: Лендинг
       </div>
     </section>
 
-    <section class="services">
-        <!-- Скрытые радио-кнопки для переключения вкладок (CSS Only) -->
-        <input type="radio" class="services__radio" id="services-tab-1" name="services-tabs" checked>
-        <input type="radio" class="services__radio" id="services-tab-2" name="services-tabs">
+    <?php
+    $services_tabs = carbon_get_post_meta(get_the_ID(), 'services_tabs');
+    $services_title = carbon_get_post_meta(get_the_ID(), 'services_title');
+    $services_callback_title = carbon_get_post_meta(get_the_ID(), 'services_callback_title');
+    $phone = carbon_get_theme_option('crb_theme_phone_number');
+    $phone_time = carbon_get_theme_option('crb_theme_phone_time');
+    $phone_link = preg_replace('/[^0-9+]/', '', $phone);
+    ?>
 
-        <h2 class="services__title">Мы лицензированная компания. 10 лет оказываем услуги</h2>
+    <?php if ($services_tabs): ?>
+    <style>
+      <?php for ($i = 1; $i <= count($services_tabs); $i++): ?>
+      #services-tab-<?php echo $i; ?>:checked ~ .services__tabs label[for='services-tab-<?php echo $i; ?>'] {
+        background-color: #d3eed3;
+        color: #155724;
+      }
+      #services-tab-<?php echo $i; ?>:checked ~ .services__body .services__panel--tab-<?php echo $i; ?> {
+        display: block;
+      }
+      #services-tab-<?php echo $i; ?>:checked ~ .services__body .services__image-wrapper img[data-tab-image="<?php echo $i; ?>"] {
+        display: block;
+      }
+      <?php endfor; ?>
+    </style>
+
+    <section class="services">
+      <div class="container">
+        <?php
+        $i = 0;
+        foreach ($services_tabs as $tab):
+          $i++; ?>
+        <input type="radio" class="services__radio" id="services-tab-<?php echo $i; ?>" name="services-tabs" <?php echo $i ===
+1
+  ? 'checked'
+  : ''; ?>>
+        <?php
+        endforeach;
+        ?>
+
+        <?php if ($services_title): ?>
+        <div class="services__title"><?php echo nl2br(esc_html($services_title)); ?></div>
+        <?php endif; ?>
 
         <div class="services__tabs">
-            <label class="services__tab" for="services-tab-1">
-                <span class="services__tab-icon">✓</span>
-                <span class="services__tab-text">Аварийный<br>ремонт</span>
-            </label>
-            <label class="services__tab" for="services-tab-2">
-                <span class="services__tab-icon">✓</span>
-                <span class="services__tab-text">Монтажные<br>работы</span>
-            </label>
+          <?php
+          $i = 0;
+          foreach ($services_tabs as $tab):
+            $i++; ?>
+          <label class="services__tab" for="services-tab-<?php echo $i; ?>">
+            <span class="services__tab-icon"></span>
+            <span class="services__tab-text"><?php echo nl2br(esc_html($tab['label'])); ?></span>
+          </label>
+          <?php
+          endforeach;
+          ?>
         </div>
 
         <div class="services__body">
-            <!-- Изображение -->
-            <div class="services__image-wrapper">
-                <img class="services__image" src="https://images.unsplash.com/photo-1558403194-611308249627?ixlib=rb-4.0.3&auto=format&fit=crop&w=800&q=80" alt="Электрик">
-            </div>
+          <div class="services__image-wrapper">
+            <?php
+            $i = 0;
+            foreach ($services_tabs as $tab):
+              $i++; ?>
+              <?php if ($image_id = $tab['image']): ?>
+              <img class="services__image" src="<?php echo wp_get_attachment_image_url(
+                $image_id,
+                'full',
+              ); ?>" alt="" data-tab-image="<?php echo $i; ?>">
+              <?php endif; ?>
+            <?php
+            endforeach;
+            ?>
+          </div>
 
-            <!-- Контентная область -->
-            <div class="services__content">
+          <div class="services__content">
+            <?php
+            $i = 0;
+            foreach ($services_tabs as $tab):
+              $i++; ?>
+            <div class="services__panel services__panel--tab-<?php echo $i; ?>">
+              <?php if ($tab['subtitle']): ?>
+              <div class="services__subtitle"><?php echo nl2br(esc_html($tab['subtitle'])); ?></div>
+              <?php endif; ?>
 
-                <!-- Панель 1: Аварийный ремонт -->
-                <div class="services__panel services__panel--tab1">
-                    <h3 class="services__subtitle">Аварийный ремонт</h3>
-                    <ul class="services__list">
-                        <li class="services__item">
-                            <span class="services__name">Диагностика проводки</span>
-                            <span class="services__price">от 350 ₽</span>
-                            <a href="#" class="services__link">Оставить заявку</a>
-                        </li>
-                        <li class="services__item">
-                            <span class="services__name">Короткого замыкания</span>
-                            <span class="services__price">от 500 ₽</span>
-                            <a href="#" class="services__link">Оставить заявку</a>
-                        </li>
-                        <li class="services__item">
-                            <span class="services__name">Устранение обрыва</span>
-                            <span class="services__price">от 450 ₽</span>
-                            <a href="#" class="services__link">Оставить заявку</a>
-                        </li>
-                        <li class="services__item">
-                            <span class="services__name">Ремонт выключателя</span>
-                            <span class="services__price">от 250 ₽</span>
-                            <a href="#" class="services__link">Оставить заявку</a>
-                        </li>
-                        <li class="services__item">
-                            <span class="services__name">Ремонт светильников и люстр</span>
-                            <span class="services__price">от 400 ₽</span>
-                            <a href="#" class="services__link">Оставить заявку</a>
-                        </li>
-                        <li class="services__item">
-                            <span class="services__name">Искрит розетка</span>
-                            <span class="services__price">от 150 ₽</span>
-                            <a href="#" class="services__link">Оставить заявку</a>
-                        </li>
-                        <li class="services__item">
-                            <span class="services__name">Искрит выключатель</span>
-                            <span class="services__price">от 150 ₽</span>
-                            <a href="#" class="services__link">Оставить заявку</a>
-                        </li>
-                        <li class="services__item">
-                            <span class="services__name">Нет света</span>
-                            <span class="services__price">от 600 ₽</span>
-                            <a href="#" class="services__link">Оставить заявку</a>
-                        </li>
-                        <li class="services__item">
-                            <span class="services__name">Ремонт розетки</span>
-                            <span class="services__price">от 250 ₽</span>
-                            <a href="#" class="services__link">Оставить заявку</a>
-                        </li>
-                        <li class="services__item">
-                            <span class="services__name">Искрит щиток</span>
-                            <span class="services__price">от 450 ₽</span>
-                            <a href="#" class="services__link">Оставить заявку</a>
-                        </li>
-                    </ul>
+              <?php if ($tab['items']): ?>
+              <ul class="services__list">
+                <?php foreach ($tab['items'] as $item): ?>
+                <li class="services__item">
+                  <span class="services__name"><?php echo esc_html($item['name']); ?></span>
+                  <span class="services__price"><?php echo esc_html($item['price']); ?></span>
+                  <a href="#" class="services__link">Оставить заявку</a>
+                </li>
+                <?php endforeach; ?>
+              </ul>
+              <?php endif; ?>
 
-                    <div class="services__callback">
-                        <div class="services__callback-title">Вызов мастера и<br>диагностика</div>
-                        <div class="services__callback-info">
-                            <div class="services__callback-schedule">
-                                <span class="services__callback-dot"></span> Заявки принимаем Пн-Вс: 8:00-22:00
-                            </div>
-                            <a href="tel:+79266316386" class="services__callback-phone">📞 +7 (926) 631-63-86</a>
-                        </div>
-                    </div>
+              <div class="services__callback">
+                <div class="services__callback-title"><?php echo nl2br(
+                  esc_html($services_callback_title ?: "Вызов мастера и\nдиагностика"),
+                ); ?></div>
+                <div class="services__callback-info">
+                  <div class="services__callback-schedule">
+                    <span class="services__callback-dot"></span> Звоните <?php echo esc_html(
+                      $phone_time,
+                    ); ?>
+                  </div>
+                  <a href="tel:<?php echo esc_attr(
+                    $phone_link,
+                  ); ?>" class="services__callback-phone">
+                    <span class="icon icon-phone"></span> <?php echo esc_html($phone); ?>
+                  </a>
                 </div>
-
-                <!-- Панель 2: Монтажные работы (скрыта по умолчанию, переключается CSS) -->
-                <div class="services__panel services__panel--tab2">
-                    <h3 class="services__subtitle">Монтажные работы</h3>
-                    <ul class="services__list">
-                        <li class="services__item">
-                            <span class="services__name">Монтаж люстры</span>
-                            <span class="services__price">от 500 ₽</span>
-                            <a href="#" class="services__link">Оставить заявку</a>
-                        </li>
-                        <li class="services__item">
-                            <span class="services__name">Монтаж точечных светильников</span>
-                            <span class="services__price">от 300 ₽</span>
-                            <a href="#" class="services__link">Оставить заявку</a>
-                        </li>
-                        <li class="services__item">
-                            <span class="services__name">Монтаж розеток</span>
-                            <span class="services__price">от 250 ₽</span>
-                            <a href="#" class="services__link">Оставить заявку</a>
-                        </li>
-                        <li class="services__item">
-                            <span class="services__name">Монтаж выключателей</span>
-                            <span class="services__price">от 200 ₽</span>
-                            <a href="#" class="services__link">Оставить заявку</a>
-                        </li>
-                        <li class="services__item">
-                            <span class="services__name">Монтаж проводки под гипсокартон</span>
-                            <span class="services__price">от 400 ₽</span>
-                            <a href="#" class="services__link">Оставить заявку</a>
-                        </li>
-                        <li class="services__item">
-                            <span class="services__name">Замена старой проводки (за м)</span>
-                            <span class="services__price">от 800 ₽</span>
-                            <a href="#" class="services__link">Оставить заявку</a>
-                        </li>
-                        <li class="services__item">
-                            <span class="services__name">Сборка и подключение щитка</span>
-                            <span class="services__price">от 1500 ₽</span>
-                            <a href="#" class="services__link">Оставить заявку</a>
-                        </li>
-                    </ul>
-
-                    <!-- Блок вызова мастера продублирован для второй вкладки -->
-                    <div class="services__callback">
-                        <div class="services__callback-title">Вызов мастера и<br>диагностика</div>
-                        <div class="services__callback-info">
-                            <div class="services__callback-schedule">
-                                <span class="services__callback-dot"></span> Заявки принимаем Пн-Вс: 8:00-22:00
-                            </div>
-                            <a href="tel:+79266316386" class="services__callback-phone">📞 +7 (926) 631-63-86</a>
-                        </div>
-                    </div>
-                </div>
-
+              </div>
             </div>
+            <?php
+            endforeach;
+            ?>
+          </div>
         </div>
+      </div>
     </section>
+    <?php endif; ?>
 
     <div class="page-layout__body">
       <div class="container">

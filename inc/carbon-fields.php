@@ -83,6 +83,21 @@ function register_carbon_fields_blocks()
       ),
       Field::make('text', 'emergency_departure_discount_value', 'Скидка / Значение'),
       Field::make('image', 'emergency_departure_bg_image', 'Фоновая картинка'),
+    ])
+    ->add_tab('Услуги', [
+      Field::make('textarea', 'services_title', 'Заголовок секции')->set_rows(2),
+      Field::make('textarea', 'services_callback_title', 'Текст вызова мастера')->set_rows(2),
+      Field::make('complex', 'services_tabs', 'Вкладки услуг')
+        ->add_fields([
+          Field::make('textarea', 'label', 'Ярлык вкладки')->set_rows(2),
+          Field::make('textarea', 'subtitle', 'Заголовок вкладки')->set_rows(2),
+          Field::make('image', 'image', 'Изображение'),
+          Field::make('complex', 'items', 'Услуги')
+            ->add_fields([
+              Field::make('text', 'name', 'Название'),
+              Field::make('text', 'price', 'Цена'),
+            ]),
+        ]),
     ]);
   // ->add_tab('Услуги', [
   //   Field::make('complex', 'services', 'Услуги')->add_fields([

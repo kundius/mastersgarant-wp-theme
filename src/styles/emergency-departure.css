@@ -221,7 +221,7 @@
 }
 
 .emergency-departure__discount-title {
-  font-size: 20px;
+  font-size: 24px;
   text-align: center;
   line-height: 1.25;
   position: relative;
@@ -230,7 +230,7 @@
 }
 
 .emergency-departure__discount-value {
-  font-size: 24px;
+  font-size: 32px;
   font-weight: 700;
   line-height: 1.25;
   color: #3da9ff;
@@ -431,7 +431,7 @@
   }
 
   .emergency-departure__discount-title {
-    font-size: 13px;
+    font-size: 14px;
   }
 
   .emergency-departure__discount-value {
