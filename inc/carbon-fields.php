@@ -84,6 +84,26 @@ function register_carbon_fields_blocks()
       Field::make('text', 'emergency_departure_discount_value', 'Скидка / Значение'),
       Field::make('image', 'emergency_departure_bg_image', 'Фоновая картинка'),
     ])
+    ->add_tab('Преимущества', [
+      Field::make('textarea', 'features_title', 'Заголовок')->set_rows(2),
+      Field::make('complex', 'features_items', 'Преимущества')
+        ->add_fields([
+          Field::make('select', 'icon_type', 'Тип иконки')
+            ->add_options([
+              'svg' => 'Галочка (SVG)',
+              'text' => 'Текст (напр. 0 ₽)',
+            ]),
+          Field::make('text', 'icon_text', 'Текст иконки'),
+          Field::make('textarea', 'text', 'Текст преимущества')->set_rows(2),
+        ]),
+    ])
+    ->add_tab('Форма со скидкой', [
+      Field::make('textarea', 'discount_form_title', 'Заголовок')->set_rows(2),
+      Field::make('textarea', 'discount_form_desc', 'Описание')->set_rows(5),
+      Field::make('text', 'discount_form_btn_text', 'Текст кнопки'),
+
+      Field::make('image', 'discount_form_image', 'Изображение (мультиметр)'),
+    ])
     ->add_tab('Услуги', [
       Field::make('textarea', 'services_title', 'Заголовок секции')->set_rows(2),
       Field::make('textarea', 'services_callback_title', 'Текст вызова мастера')->set_rows(2),
@@ -98,17 +118,41 @@ function register_carbon_fields_blocks()
               Field::make('text', 'price', 'Цена'),
             ]),
         ]),
+    ])
+    ->add_tab('Почему выбирают нас', [
+      Field::make('textarea', 'advantages_title', 'Заголовок')->set_rows(2),
+      Field::make('textarea', 'advantages_caption_title', 'Подпись / Заголовок')->set_rows(2),
+      Field::make('textarea', 'advantages_caption_desc', 'Подпись / Описание')->set_rows(3),
+      Field::make('image', 'advantages_image', 'Изображение'),
+      Field::make('complex', 'advantages_items', 'Преимущества')
+        ->add_fields([
+          Field::make('textarea', 'title', 'Заголовок')->set_rows(2),
+          Field::make('textarea', 'desc', 'Описание')->set_rows(2),
+        ]),
+    ])
+    ->add_tab('Предложение', [
+      Field::make('textarea', 'promo_title', 'Заголовок')->set_rows(3),
+      Field::make('textarea', 'promo_desc', 'Описание')->set_rows(5),
+      Field::make('textarea', 'promo_right_title', 'Дополнительный заголовок')->set_rows(2),
+      Field::make('textarea', 'promo_right_desc', 'Дополнительное описание')->set_rows(2),
+      Field::make('complex', 'promo_check_items', 'Пункты с галочкой')
+        ->add_fields([
+          Field::make('textarea', 'text', 'Текст')->set_rows(2),
+        ]),
+    ])
+    ->add_tab('Команда', [
+      Field::make('textarea', 'team_title', 'Заголовок (HTML разрешён)')->set_rows(3),
+      Field::make('textarea', 'team_subtitle', 'Подзаголовок')->set_rows(2),
+      Field::make('text', 'team_stat_years_number', 'Статистика / Лет опыта (число)'),
+      Field::make('text', 'team_stat_years_label', 'Статистика / Лет опыта (подпись)'),
+      Field::make('text', 'team_stat_clients_number', 'Статистика / Клиентов (число)'),
+      Field::make('text', 'team_stat_clients_label', 'Статистика / Клиентов (подпись)'),
+      Field::make('complex', 'team_gallery', 'Фото мастеров')
+        ->add_fields([
+          Field::make('image', 'image', 'Фото'),
+        ]),
+      Field::make('textarea', 'team_bottom_text', 'Текст внизу')->set_rows(4),
     ]);
-  // ->add_tab('Услуги', [
-  //   Field::make('complex', 'services', 'Услуги')->add_fields([
-  //     Field::make('image', 'photo', 'Фото'),
-  //     Field::make('text', 'shift', 'Сдвинуть фото'),
-  //     Field::make('text', 'short_name', 'Короткое название'),
-  //     Field::make('textarea', 'full_name', 'Полное название')->set_rows(2),
-  //     Field::make('textarea', 'content', 'Описание')->set_rows(4),
-  //     Field::make('text', 'link', 'Ссылка'),
-  //   ]),
-  // ]);
 
   // Block::make('partials_services', 'Блок "Выбирайте отдых для себя"')
   //   ->add_fields([

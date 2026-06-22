@@ -1,0 +1,274 @@
+.promo {
+  position: relative;
+  overflow: hidden;
+  background-color: #0068ff; /* Сплошной синий (левая часть) */
+  /* Фоновая фотография для правой части */
+  background-image: url('../images/bg-offer.png');
+  background-size: cover;
+  background-position: right center;
+  background-repeat: no-repeat;
+  border-radius: 40px;
+  position: relative;
+  max-width: 1792px;
+  margin-left: auto;
+  margin-right: auto;
+  width: calc(100% - (100vw - var(--container-width)) / 2);
+  padding-top: 96px;
+  padding-bottom: 96px;
+  min-height: 700px;
+}
+
+/* Градиентный переход: сплошной синий слева переходит в тонированное фото справа */
+/*.promo::before {
+  content: '';
+  position: absolute;
+  inset: 0;
+  z-index: 1;
+  pointer-events: none;
+  background: linear-gradient(to right, #0068ff 45%, rgba(0, 70, 180, 0.6) 100%);
+}*/
+
+/* Рабочий (на заднем плане, под текстом) */
+.promo::after {
+  content: '';
+  position: absolute;
+  z-index: 1;
+  bottom: 0;
+  left: 50%;
+  transform: translateX(-50%);
+  transform-origin: 50% 100%;
+  pointer-events: none;
+  width: 676px;
+  height: 444px;
+  background-image: url('../images/image-offer.png');
+  background-size: cover;
+  background-position: center center;
+  background-repeat: no-repeat;
+}
+
+/* Контейнер контента (всегда поверх фонов) */
+.promo__container {
+  position: relative;
+  z-index: 3;
+  display: grid;
+  grid-template-columns: 2fr 1fr;
+  gap: 48px;
+}
+
+/* ---------- Элементы контента ---------- */
+.promo__content-left {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+}
+
+.promo__title {
+  font-weight: 500;
+  font-size: 42px;
+  color: #ffffff;
+  margin-bottom: 40px;
+  line-height: 1.25;
+}
+
+.promo__desc {
+  font-size: 16px;
+  color: rgba(255, 255, 255, 0.9);
+  max-width: 360px;
+  margin: 0;
+}
+
+.promo__content-right {
+  display: flex;
+  flex-direction: column;
+}
+
+.promo__list {
+  list-style: none;
+  padding: 0;
+  margin: 40px 0;
+}
+
+.promo__item + .promo__item {
+  margin-top: 16px;
+}
+
+.promo__right-title {
+  font-weight: 700;
+  font-size: 18px;
+  line-height: 1.5;
+  color: #ffffff;
+  margin-bottom: 16px;
+}
+
+.promo__right-desc {
+  color: rgba(255, 255, 255, 0.7);
+  font-size: 16px;
+  line-height: 1.5;
+}
+
+.promo__item--with-check {
+  display: flex;
+  align-items: flex-start;
+  gap: 12px;
+  color: #ffffff;
+  font-size: 15px;
+  line-height: 1.4;
+}
+
+.promo__check-icon {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  flex-shrink: 0;
+  width: 20px;
+  height: 20px;
+  background-color: #ffffff;
+  border-radius: 50%;
+  margin-top: 1px;
+}
+
+.promo__check-icon::before {
+  content: '';
+  display: block;
+  width: 12px;
+  height: 12px;
+  background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 24 24' fill='%230068ff'%3E%3Cpath d='M9 16.17L4.83 12l-1.42 1.41L9 19 21 7l-1.41-1.41L9 16.17z'/%3E%3C/svg%3E");
+  background-size: contain;
+  background-repeat: no-repeat;
+  background-position: center;
+}
+
+/* ---------- Контакты ---------- */
+.promo__contact {
+  align-self: flex-start;
+}
+
+.promo__contact-schedule {
+  display: flex;
+  align-items: center;
+  text-align: center;
+  gap: 8px;
+  font-size: 16px;
+  color: #ffffff;
+}
+
+.promo__contact-dot {
+  display: inline-block;
+  width: 8px;
+  height: 8px;
+  background-color: #22c55e;
+  border-radius: 2px;
+  flex-shrink: 0;
+  margin-left: 4px;
+  margin-right: 4px;
+}
+
+.promo__contact-phone {
+  display: flex;
+  align-items: center;
+  gap: 12px;
+  margin-top: 6px;
+  text-decoration: none;
+  color: #ffffff;
+  font-size: 24px;
+  font-weight: 700;
+  transition: opacity 0.2s ease;
+}
+
+.promo__contact-phone:hover {
+  opacity: 0.8;
+}
+
+/* ================= АДАПТИВНОСТЬ (Desktop First) ================= */
+
+/* --max-2xl: 1280px <= width < 1536px */
+@media (--max-2xl) {
+  .promo {
+    padding-top: 64px;
+    padding-bottom: 64px;
+    min-height: 600px;
+  }
+  .promo::after {
+    transform: scale(0.8) translateX(-50%);
+  }
+}
+
+/* --max-xl: 1024px <= width < 1280px */
+@media (--max-xl) {
+  .promo__container {
+    gap: 32px;
+  }
+  .promo__title {
+    font-size: 32px;
+    margin-bottom: 32px;
+  }
+  .promo::after {
+    transform: scale(0.8) translateX(-50%);
+  }
+}
+
+/* --max-lg: width < 1024px (планшеты и небольшие ноутбуки) */
+@media (--max-lg) {
+  .promo__container {
+    grid-template-columns: 1fr;
+  }
+
+  /* Прячем рабочего, чтобы он не перекрывал текст на планшетах */
+  .promo::after {
+    display: none;
+  }
+
+  .promo__title {
+    text-align: center;
+  }
+
+  .promo__desc {
+    text-align: center;
+    align-self: center;
+  }
+
+  .promo__content-right {
+    align-items: center;
+  }
+  .promo__right-title,
+  .promo__right-desc {
+    text-align: center;
+  }
+  .promo__contact {
+    align-self: center;
+  }
+}
+
+/* --max-md: 640px <= width < 768px */
+@media (--max-md) {
+  .promo {
+    padding-top: 48px;
+    padding-bottom: 48px;
+    border-radius: 24px;
+  }
+  .promo__title {
+    font-size: 24px;
+    margin-bottom: 32px;
+  }
+  .promo__desc {
+    font-size: 14px;
+  }
+  .promo__item {
+    font-size: 14px;
+  }
+  .promo__item + .promo__item {
+    margin-top: 12px;
+  }
+  .promo::before {
+    content: '';
+    position: absolute;
+    inset: 0;
+    background: #058bfdd9;
+    border-radius: inherit;
+    z-index: 1;
+    pointer-events: none;
+  }
+  .promo__list {
+    margin: 32px 0;
+  }
+}

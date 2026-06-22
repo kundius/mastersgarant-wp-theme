@@ -288,6 +288,290 @@ Template Name: Лендинг
     </section>
     <?php endif; ?>
 
+    <?php
+    $promo_title = carbon_get_post_meta(get_the_ID(), 'promo_title');
+    $promo_desc = carbon_get_post_meta(get_the_ID(), 'promo_desc');
+    $promo_right_title = carbon_get_post_meta(get_the_ID(), 'promo_right_title');
+    $promo_right_desc = carbon_get_post_meta(get_the_ID(), 'promo_right_desc');
+    $promo_check_items = carbon_get_post_meta(get_the_ID(), 'promo_check_items');
+    $phone = carbon_get_theme_option('crb_theme_phone_number');
+    $phone_time = carbon_get_theme_option('crb_theme_phone_time');
+    $phone_link = preg_replace('/[^0-9+]/', '', $phone);
+    ?>
+
+    <section class="promo">
+      <div class="container">
+        <div class="promo__container">
+          <div class="promo__content-left">
+            <?php if ($promo_title): ?>
+            <div class="promo__title"><?php echo nl2br(esc_html($promo_title)); ?></div>
+            <?php endif; ?>
+            <?php if ($promo_desc): ?>
+            <p class="promo__desc"><?php echo nl2br(esc_html($promo_desc)); ?></p>
+            <?php endif; ?>
+          </div>
+
+          <div class="promo__content-right">
+            <?php if ($promo_right_title): ?>
+            <div class="promo__right-title"><?php echo nl2br(esc_html($promo_right_title)); ?></div>
+            <?php endif; ?>
+            <?php if ($promo_right_desc): ?>
+            <div class="promo__right-desc"><?php echo nl2br(esc_html($promo_right_desc)); ?></div>
+            <?php endif; ?>
+            <?php if ($promo_check_items): ?>
+            <ul class="promo__list">
+                <?php foreach ($promo_check_items as $item): ?>
+                <li class="promo__item promo__item--with-check">
+                  <span class="promo__check-icon"></span>
+                  <span><?php echo nl2br(esc_html($item['text'])); ?></span>
+                </li>
+                <?php endforeach; ?>
+            </ul>
+            <?php endif; ?>
+            <div class="promo__contact">
+              <div class="promo__contact-schedule">
+                <span class="promo__contact-dot"></span>
+                Звоните, <?php echo esc_html($phone_time); ?>
+              </div>
+              <a href="tel:<?php echo esc_attr($phone_link); ?>" class="promo__contact-phone">
+                <span class="icon icon-phone"></span>
+                <?php echo esc_html($phone); ?>
+              </a>
+            </div>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <?php
+    $features_title = carbon_get_post_meta(get_the_ID(), 'features_title');
+    $features_items = carbon_get_post_meta(get_the_ID(), 'features_items');
+    ?>
+
+    <section class="features">
+      <div class="container">
+        <?php if ($features_title): ?>
+        <div class="features__title"><?php echo nl2br(esc_html($features_title)); ?></div>
+        <?php endif; ?>
+
+        <?php if ($features_items): ?>
+        <ul class="features__list">
+          <?php foreach ($features_items as $item): ?>
+          <li class="features__item">
+            <div class="features__icon<?php echo $item['icon_type'] === 'text'
+              ? ' features__icon--text'
+              : ''; ?>">
+              <?php if ($item['icon_type'] === 'text'): ?>
+              <?php echo esc_html($item['icon_text']); ?>
+              <?php else: ?>
+              <svg width="18" height="14" viewBox="0 0 18 14" fill="none" xmlns="http://www.w3.org/2000/svg">
+                <path d="M1 7L6.5 12.5L17 1" stroke="white" stroke-width="3" stroke-linecap="round" stroke-linejoin="round"/>
+              </svg>
+              <?php endif; ?>
+            </div>
+            <div class="features__content">
+              <div class="features__text"><?php echo nl2br(wp_kses_post($item['text'])); ?></div>
+            </div>
+          </li>
+          <?php endforeach; ?>
+        </ul>
+        <?php endif; ?>
+      </div>
+    </section>
+
+    <?php
+    $discount_form_title = carbon_get_post_meta(get_the_ID(), 'discount_form_title');
+    $discount_form_desc = carbon_get_post_meta(get_the_ID(), 'discount_form_desc');
+    $discount_form_btn_text = carbon_get_post_meta(get_the_ID(), 'discount_form_btn_text');
+    $discount_form_image = carbon_get_post_meta(get_the_ID(), 'discount_form_image');
+    ?>
+
+    <section class="discount-form">
+      <div class="discount-form__container">
+        <div class="discount-form__content">
+          <?php if ($discount_form_title): ?>
+          <div class="discount-form__title">
+            <?php echo nl2br(esc_html($discount_form_title)); ?>
+          </div>
+          <?php endif; ?>
+          <?php if ($discount_form_desc): ?>
+          <div class="discount-form__desc">
+            <?php echo nl2br(esc_html($discount_form_desc)); ?>
+          </div>
+          <?php endif; ?>
+        </div>
+
+        <div class="discount-form__image-wrapper">
+          <?php if ($discount_form_image): ?>
+          <img class="discount-form__image" src="<?php echo wp_get_attachment_image_url(
+            $discount_form_image,
+            'full',
+          ); ?>" alt="">
+          <?php endif; ?>
+        </div>
+
+        <div class="discount-form__form-wrap">
+          <form class="discount-form__form">
+            <div class="discount-form__row">
+              <input type="tel" class="discount-form__input" placeholder="+7 (000) 000-00-00" required>
+              <button type="submit" class="discount-form__btn">
+                <?php echo esc_html($discount_form_btn_text ?: 'ПОЛУЧИТЬ СКИДКУ -20%'); ?>
+              </button>
+            </div>
+          </form>
+          <div class="discount-form__note">Заполняя поля формы, Вы даете согласие на обработку персональных данных</div>
+        </div>
+      </div>
+    </section>
+
+    <?php
+    $advantages_title = carbon_get_post_meta(get_the_ID(), 'advantages_title');
+    $advantages_caption_title = carbon_get_post_meta(get_the_ID(), 'advantages_caption_title');
+    $advantages_caption_desc = carbon_get_post_meta(get_the_ID(), 'advantages_caption_desc');
+    $advantages_items = carbon_get_post_meta(get_the_ID(), 'advantages_items');
+    $advantages_image = carbon_get_post_meta(get_the_ID(), 'advantages_image');
+    ?>
+
+    <?php if (
+      $advantages_title ||
+      $advantages_caption_title ||
+      $advantages_items ||
+      $advantages_image
+    ): ?>
+    <section class="advantages">
+      <div class="container">
+            <div class="advantages__container">
+                    <?php if ($advantages_title): ?>
+                    <div class="advantages__title">
+                        <?php echo nl2br(esc_html($advantages_title)); ?>
+                    </div>
+                    <?php endif; ?>
+
+                    <?php if ($advantages_caption_title || $advantages_caption_desc): ?>
+                    <div class="advantages__caption-wrapper">
+                    <div class="advantages__caption">
+                        <?php if ($advantages_caption_title): ?>
+                        <div class="advantages__caption-title"><?php echo nl2br(
+                          esc_html($advantages_caption_title),
+                        ); ?></div>
+                        <?php endif; ?>
+                        <?php if ($advantages_caption_desc): ?>
+                        <div class="advantages__caption-desc"><?php echo nl2br(
+                          esc_html($advantages_caption_desc),
+                        ); ?></div>
+                        <?php endif; ?>
+                    </div>
+                    </div>
+                    <?php endif; ?>
+
+                    <?php if ($advantages_items): ?>
+                    <ul class="advantages__list">
+                        <?php foreach ($advantages_items as $item): ?>
+                        <li class="advantages__item">
+                            <div class="advantages__icon-box">
+                                <svg width="12" height="10" viewBox="0 0 12 10" fill="none" xmlns="http://www.w3.org/2000/svg">
+                                    <path d="M1 4.5L4.5 8L11 1" stroke="#ffffff" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
+                                </svg>
+                            </div>
+                            <div class="advantages__info">
+                                <?php if (!empty($item['title'])): ?>
+                                <div class="advantages__item-title"><?php echo nl2br(
+                                  esc_html($item['title']),
+                                ); ?></div>
+                                <?php endif; ?>
+                                <?php if (!empty($item['desc'])): ?>
+                                <div class="advantages__item-desc"><?php echo nl2br(
+                                  esc_html($item['desc']),
+                                ); ?></div>
+                                <?php endif; ?>
+                            </div>
+                        </li>
+                        <?php endforeach; ?>
+                    </ul>
+                    <?php endif; ?>
+
+                    <?php if ($advantages_image): ?>
+                    <div class="advantages__visual">
+                        <div class="advantages__image-wrapper">
+                            <?php echo wp_get_attachment_image($advantages_image, 'full', false, [
+                              'class' => 'advantages__image',
+                            ]); ?>
+                        </div>
+                    </div>
+                    <?php endif; ?>
+            </div>
+            </div>
+        </section>
+    <?php endif; ?>
+
+    <?php
+    $team_title = carbon_get_post_meta(get_the_ID(), 'team_title');
+    $team_subtitle = carbon_get_post_meta(get_the_ID(), 'team_subtitle');
+    $team_stat_years_number = carbon_get_post_meta(get_the_ID(), 'team_stat_years_number');
+    $team_stat_years_label = carbon_get_post_meta(get_the_ID(), 'team_stat_years_label');
+    $team_stat_clients_number = carbon_get_post_meta(get_the_ID(), 'team_stat_clients_number');
+    $team_stat_clients_label = carbon_get_post_meta(get_the_ID(), 'team_stat_clients_label');
+    $team_gallery = carbon_get_post_meta(get_the_ID(), 'team_gallery');
+    $team_bottom_text = carbon_get_post_meta(get_the_ID(), 'team_bottom_text');
+    ?>
+
+    <?php if ($team_title || $team_subtitle || $team_gallery || $team_bottom_text): ?>
+    <section class="team">
+        <div class="container">
+
+            <?php if ($team_title): ?>
+            <div class="team__header">
+                <div class="team__title">
+                    <?php echo nl2br(wp_kses_post($team_title)); ?>
+                </div>
+            </div>
+            <?php endif; ?>
+
+            <?php if ($team_subtitle): ?>
+            <div class="team__subtitle"><?php echo nl2br(esc_html($team_subtitle)); ?></div>
+            <?php endif; ?>
+
+            <?php if ($team_stat_years_number || $team_stat_clients_number): ?>
+            <div class="team__stats">
+                <?php if ($team_stat_years_number): ?>
+                <div class="team__stat">
+                    <span class="team__stat-number"><?php echo esc_html($team_stat_years_number); ?></span>
+                    <?php if ($team_stat_years_label): ?>
+                    <span class="team__stat-label"><?php echo esc_html($team_stat_years_label); ?></span>
+                    <?php endif; ?>
+                </div>
+                <?php endif; ?>
+                <?php if ($team_stat_clients_number): ?>
+                <div class="team__stat">
+                    <span class="team__stat-number"><?php echo esc_html($team_stat_clients_number); ?></span>
+                    <?php if ($team_stat_clients_label): ?>
+                    <span class="team__stat-label"><?php echo esc_html($team_stat_clients_label); ?></span>
+                    <?php endif; ?>
+                </div>
+                <?php endif; ?>
+            </div>
+            <?php endif; ?>
+
+            <?php if ($team_gallery): ?>
+            <div class="team__gallery">
+                <?php foreach ($team_gallery as $item): ?>
+                <div class="team__card">
+                    <?php echo wp_get_attachment_image($item['image'], 'medium', false, ['class' => 'team__image', 'alt' => 'Мастер']); ?>
+                </div>
+                <?php endforeach; ?>
+            </div>
+            <?php endif; ?>
+
+            <?php if ($team_bottom_text): ?>
+            <div class="team__bottom">
+                <p class="team__bottom-text"><?php echo nl2br(esc_html($team_bottom_text)); ?></p>
+            </div>
+            <?php endif; ?>
+
+        </div>
+    </section>
+    <?php endif; ?>
+
     <div class="page-layout__body">
       <div class="container">
         <div class="page-content">

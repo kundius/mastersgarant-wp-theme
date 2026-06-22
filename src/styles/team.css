@@ -1,0 +1,141 @@
+.team {
+  padding: 96px 0;
+  background-color: #ffffff;
+}
+
+.team__header {
+  margin-bottom: 32px;
+}
+
+.team__title {
+  font-weight: 400;
+  font-size: 48px;
+  line-height: 1.25;
+}
+
+.team__title strong {
+  font-weight: 700;
+}
+
+.team__subtitle {
+  font-size: 20px;
+  margin-bottom: 16px;
+}
+
+/* Статистика */
+.team__stats {
+  display: flex;
+  gap: 60px;
+  margin-bottom: 32px;
+}
+
+.team__stat {
+  display: flex;
+  align-items: center;
+  gap: 16px;
+}
+
+.team__stat-number {
+  font-size: 28px;
+  font-weight: 500;
+  color: #3bb24e;
+}
+
+.team__stat-label {
+  font-size: 16px;
+}
+
+/* Галерея мастеров */
+.team__gallery {
+  display: grid;
+  grid-template-columns: repeat(7, 1fr);
+  gap: 32px;
+  margin-bottom: 48px;
+}
+
+.team__card {
+  border-radius: 4px;
+  overflow: hidden;
+  background-color: #f5f5f5;
+}
+
+.team__image {
+  width: 100%;
+  height: auto;
+  display: block;
+  aspect-ratio: 3 / 4; /* Соотношение сторон фото как на макете */
+  object-fit: cover;
+}
+
+/* Текст внизу */
+.team__bottom-text {
+  max-width: 800px;
+  margin: 0 auto;
+  text-align: center;
+  font-size: 20px;
+  color: #6b7280;
+}
+
+/* --max-lg: width < 1024px (Планшеты и небольшие экраны) */
+@media (--max-lg) {
+  .team {
+    padding: 64px 0;
+  }
+
+  .team__title {
+    font-size: 32px;
+  }
+
+  .team__header {
+    margin-bottom: 24px;
+  }
+
+  .team__stats {
+    gap: 32px;
+  }
+
+  /* Перестраиваем на 4 колонки (в ряд поместятся 4 мастера) */
+  .team__gallery {
+    gap: 16px;
+    grid-template-columns: repeat(4, 1fr);
+  }
+}
+
+/* --max-md: width < 768px (Мобильные устройства) */
+@media (--max-md) {
+  .team {
+    padding: 48px 0;
+  }
+
+  .team__title {
+    font-size: 28px;
+  }
+
+  .team__subtitle {
+    font-size: 18px;
+  }
+
+  .team__stats {
+    flex-wrap: wrap;
+    gap: 16px 24px;
+    margin-bottom: 24px;
+  }
+
+  .team__stat-number {
+    font-size: 24px;
+  }
+
+  .team__stat-label {
+    font-size: 14px;
+  }
+
+  .team__gallery {
+    gap: 12px;
+    margin-bottom: 32px;
+    grid-template-columns: repeat(2, 1fr);
+  }
+
+  .team__bottom-text {
+    font-size: 16px;
+  }
+}

@@ -169,16 +169,16 @@
   display: flex;
   flex-direction: column;
   gap: 6px;
+  align-self: center;
 }
 
 .services__callback-schedule {
   display: flex;
   align-items: center;
-  gap: 8px;
+  gap: 4px;
   font-size: 14px;
   color: #666;
   text-align: center;
-  justify-content: center;
 }
 
 .services__callback-dot {
@@ -187,6 +187,7 @@
   height: 8px;
   background-color: #25d366;
   border-radius: 2px;
+  margin: 0 4px;
 }
 
 .services__callback-phone {

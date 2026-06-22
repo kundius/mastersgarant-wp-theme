@@ -1,0 +1,169 @@
+.advantages {
+  background-color: #0b1118;
+  background-image: url('../images/bg-advantages.png');
+  background-size: cover;
+  background-position: 100% 100%;
+  background-repeat: no-repeat;
+
+  overflow: hidden; /* Чтобы картинка не вылезала за закругленные углы блока */
+  border-radius: 40px;
+  position: relative;
+  max-width: 1792px;
+  margin-left: auto;
+  margin-right: auto;
+  width: calc(100% - (100vw - var(--container-width)) / 2);
+  padding-top: 96px;
+  padding-bottom: 128px;
+}
+
+.advantages__container {
+  display: grid;
+  grid-template-columns: 1.2fr 0.8fr;
+  grid-template-areas:
+    'title caption'
+    'list visual';
+  gap: 48px;
+}
+
+/* --- Определяем области для сетки --- */
+.advantages__title {
+  grid-area: title;
+  font-weight: 400;
+  font-size: 56px;
+  line-height: 1.25;
+  color: #ffffff;
+}
+
+.advantages__caption-wrapper {
+  grid-area: caption;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+.advantages__caption {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  max-width: 440px;
+}
+
+.advantages__caption-title {
+  font-size: 16px;
+  font-weight: 700;
+  color: #ffffff;
+  margin-bottom: 4px;
+  text-align: center;
+}
+
+.advantages__caption-desc {
+  font-size: 14px;
+  color: #9ca3af;
+  text-align: center;
+}
+
+.advantages__list {
+  grid-area: list;
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 32px 48px;
+  list-style: none;
+  padding: 0;
+  margin: 0;
+}
+
+.advantages__visual {
+  grid-area: visual;
+  position: relative;
+}
+
+/* --- Картинка (Плавающая внутри правой нижней ячейки) --- */
+.advantages__image-wrapper {
+  width: 100%;
+  height: 100%;
+}
+
+.advantages__image {
+  width: 100%;
+  height: 100%;
+  object-fit: contain;
+}
+
+/* --- Стили преимуществ --- */
+.advantages__item {
+  display: flex;
+  gap: 16px;
+  align-items: flex-start;
+}
+
+.advantages__icon-box {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  flex-shrink: 0;
+  width: 48px;
+  height: 48px;
+  border: 1px solid #ffffff;
+  border-radius: 2px;
+}
+
+.advantages__info {
+  display: flex;
+  flex-direction: column;
+  gap: 4px;
+}
+
+.advantages__item-title {
+  font-size: 16px;
+  font-weight: 700;
+  color: #ffffff;
+}
+
+.advantages__item-desc {
+  font-size: 14px;
+  color: #9ca3af;
+}
+
+/* --max-lg: width < 1024px (Планшеты. Правая колонка пропадает) */
+@media (--max-lg) {
+  .advantages {
+    padding: 64px 0;
+  }
+  .advantages__title {
+    font-size: 36px;
+    text-align: center;
+  }
+  .advantages__container {
+    grid-template-columns: 1fr;
+    grid-template-areas:
+      'title'
+      'caption'
+      'list';
+    gap: 32px;
+  }
+  /* Картинка исчезает, как вы просили */
+  .advantages__visual {
+    display: none;
+  }
+}
+
+/* --max-md: 640px <= width < 768px */
+@media (--max-md) {
+  .advantages {
+    padding: 48px 0;
+    border-radius: 24px;
+  }
+  .advantages__title {
+    font-size: 28px;
+  }
+  .advantages__list {
+    grid-template-columns: 1fr;
+    gap: 24px;
+  }
+  .advantages__item-title {
+    font-size: 14px;
+  }
+  .advantages__item-desc {
+    font-size: 12px;
+  }
+}
