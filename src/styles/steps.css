@@ -154,6 +154,15 @@
   opacity: 0.9;
 }
 
+.steps__errors {
+  font-size: 13px;
+  color: #dc2626;
+}
+
+.steps__errors:empty {
+  display: none;
+}
+
 .steps__form-note {
   font-size: 12px;
   opacity: 0.8;

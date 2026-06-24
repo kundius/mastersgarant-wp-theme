@@ -140,8 +140,10 @@
   padding: 6px 0;
   color: #25d366;
   text-decoration: none;
+  border: none;
   border-bottom: 1px solid currentColor;
   white-space: nowrap;
+  background: transparent;
 }
 
 .services__link:hover {

@@ -38,7 +38,6 @@
 /* ---------- Форма ---------- */
 .discount-form__form {
   width: 100%;
-  margin-bottom: 16px;
 }
 
 .discount-form__row {
@@ -70,7 +69,7 @@
 .discount-form__btn {
   background-color: #3bb24e; /* Зеленый как в макете */
   color: #ffffff;
-  font-size: 16px;
+  font-size: 14px;
   font-weight: 600;
   border: none;
   border-radius: 12px;
@@ -95,6 +94,7 @@
 .discount-form__note {
   font-size: 11px;
   color: #888;
+  margin-top: 16px;
 }
 
 /* ---------- Изображение (Правая часть) ---------- */
@@ -158,6 +158,12 @@
     flex-direction: column;
     align-items: stretch;
   }
+  .discount-form__errors {
+    font-size: 13px;
+    color: #dc2626;
+    margin-top: 4px;
+  }
+
   .discount-form__note {
     text-align: center;
   }

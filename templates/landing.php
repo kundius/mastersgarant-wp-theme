@@ -255,7 +255,7 @@ Template Name: Лендинг
                 <li class="services__item">
                   <span class="services__name"><?php echo esc_html($item['name']); ?></span>
                   <span class="services__price"><?php echo esc_html($item['price']); ?></span>
-                  <a href="#" class="services__link">Оставить заявку</a>
+                  <button type="button" class="services__link" data-callback-button>Оставить заявку</button>
                 </li>
                 <?php endforeach; ?>
               </ul>
@@ -411,15 +411,36 @@ Template Name: Лендинг
         </div>
 
         <div class="discount-form__form-wrap">
-          <form class="discount-form__form">
+          <form
+            action="<?php echo admin_url('admin-ajax.php'); ?>"
+            class="discount-form__form"
+            data-feedback-form
+            data-feedback-form-goal=""
+            data-feedback-form-action="feedback_form">
+            <input type="hidden" name="submitted" value="">
+            <input type="hidden" name="nonce" value="<?php echo wp_create_nonce(
+              'feedback-nonce',
+            ); ?>">
+            <input type="hidden" name="page" value="<?php echo esc_html(get_self_link()); ?>">
+            <input type="hidden" name="subject" value="Получить скидку">
+
             <div class="discount-form__row">
-              <input type="tel" class="discount-form__input" placeholder="+7 (000) 000-00-00" required>
+              <input type="text" class="discount-form__input" name="phone" value="" data-maska="+ 7 (###) - ### - ## - ##" placeholder="+ 7 (___)  - ___ - __ - __" required>
               <button type="submit" class="discount-form__btn">
                 <?php echo esc_html($discount_form_btn_text ?: 'ПОЛУЧИТЬ СКИДКУ -20%'); ?>
               </button>
             </div>
+
+            <div class="discount-form__errors" data-feedback-form-errors></div>
+
+            <div class="discount-form__note">Заполняя поля формы, Вы даете согласие на обработку персональных данных</div>
+
+            <div class="modal-form-success">
+              <div class="modal-form-success__title">Сообщение успешно отправлено</div>
+              <div class="modal-form-success__desc">Мы свяжемся с вами в ближайшее время</div>
+              <button type="button" class="modal-form-success__close" data-feedback-form-reset>Закрыть</button>
+            </div>
           </form>
-          <div class="discount-form__note">Заполняя поля формы, Вы даете согласие на обработку персональных данных</div>
         </div>
       </div>
     </section>
@@ -630,14 +651,37 @@ Template Name: Лендинг
                       $steps_card1_subtitle,
                     ); ?></div>
 
-                    <form class="steps__form">
-                        <div class="steps__input-wrapper">
-                            <input type="tel" class="steps__input" placeholder="+7 (000) 000-00-00">
-                        </div>
-                        <button type="button" class="steps__btn"><?php echo esc_html(
-                          $steps_card1_btn_text,
-                        ); ?></button>
-                        <div class="steps__form-note">Заполняя поля формы, Вы даете согласие на обработку персональных данных</div>
+                    <form
+                      action="<?php echo admin_url('admin-ajax.php'); ?>"
+                      class="steps__form"
+                      data-feedback-form
+                      data-feedback-form-goal=""
+                      data-feedback-form-action="feedback_form">
+                      <input type="hidden" name="submitted" value="">
+                      <input type="hidden" name="nonce" value="<?php echo wp_create_nonce(
+                        'feedback-nonce',
+                      ); ?>">
+                      <input type="hidden" name="page" value="<?php echo esc_html(
+                        get_self_link(),
+                      ); ?>">
+                      <input type="hidden" name="subject" value="Оставить заявку">
+
+                      <div class="steps__input-wrapper">
+                        <input type="text" class="steps__input" name="phone" value="" data-maska="+ 7 (###) - ### - ## - ##" placeholder="+ 7 (___)  - ___ - __ - __" required>
+                      </div>
+
+                      <div class="steps__errors" data-feedback-form-errors></div>
+
+                      <button type="submit" class="steps__btn"><?php echo esc_html(
+                        $steps_card1_btn_text,
+                      ); ?></button>
+                      <div class="steps__form-note">Заполняя поля формы, Вы даете согласие на обработку персональных данных</div>
+
+                      <div class="modal-form-success">
+                        <div class="modal-form-success__title">Сообщение успешно отправлено</div>
+                        <div class="modal-form-success__desc">Мы свяжемся с вами в ближайшее время</div>
+                        <button type="button" class="modal-form-success__close" data-feedback-form-reset>Закрыть</button>
+                      </div>
                     </form>
                 </div>
                 <?php endif; ?>
