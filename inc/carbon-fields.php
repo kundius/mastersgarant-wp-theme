@@ -53,8 +53,6 @@ function register_carbon_fields_blocks()
     Field::make('text', 'crb_theme_max_link', 'MAX'),
     Field::make('text', 'crb_theme_email', 'E-mail'),
     Field::make('textarea', 'crb_theme_address', 'Адерс')->set_rows(2),
-    Field::make('text', 'crb_theme_contacts_title', 'Контакты / Заголовок секции'),
-    Field::make('text', 'crb_theme_contacts_subtitle', 'Контакты / Подзаголовок'),
     Field::make(
       'complex',
       'crb_theme_contacts_schedules',
@@ -170,6 +168,37 @@ function register_carbon_fields_blocks()
       ]),
     ]);
 
+  Container::make('post_meta', 'Услуги и цены')
+    ->where('post_type', '=', 'page')
+    ->where('post_template', '=', 'templates/services.php')
+    ->add_tab('Услуги и цены', [
+      Field::make('complex', 'services_tabs', 'Вкладки услуг')->add_fields([
+        Field::make('textarea', 'label', 'Ярлык вкладки')->set_rows(2),
+        Field::make('textarea', 'subtitle', 'Заголовок вкладки')->set_rows(2),
+        Field::make('image', 'image', 'Изображение'),
+        Field::make('complex', 'items', 'Услуги')->add_fields([
+          Field::make('text', 'name', 'Название'),
+          Field::make('text', 'price', 'Цена'),
+        ]),
+      ]),
+    ]);
+
+  Container::make('post_meta', 'О нас')
+    ->where('post_type', '=', 'page')
+    ->where('post_template', '=', 'templates/about.php')
+    ->add_tab('Команда', [
+      Field::make('textarea', 'team_title', 'Заголовок (HTML разрешён)')->set_rows(3),
+      Field::make('textarea', 'team_subtitle', 'Подзаголовок')->set_rows(2),
+      Field::make('text', 'team_stat_years_number', 'Статистика / Лет опыта (число)'),
+      Field::make('text', 'team_stat_years_label', 'Статистика / Лет опыта (подпись)'),
+      Field::make('text', 'team_stat_clients_number', 'Статистика / Клиентов (число)'),
+      Field::make('text', 'team_stat_clients_label', 'Статистика / Клиентов (подпись)'),
+      Field::make('complex', 'team_gallery', 'Фото мастеров')->add_fields([
+        Field::make('image', 'image', 'Фото'),
+      ]),
+      Field::make('textarea', 'team_bottom_text', 'Текст внизу')->set_rows(4),
+    ]);
+
   // Block::make('partials_services', 'Блок "Выбирайте отдых для себя"')
   //   ->add_fields([
   //     Field::make('separator', 'separator', 'Блок "Выбирайте отдых для себя"'),
@@ -185,20 +214,20 @@ function register_carbon_fields_blocks()
   //     ]);
   //   });
 
-  // Block::make('partials_slidwshow', 'Блок "Слайдшоу"')
-  //   ->add_fields([
-  //     Field::make('separator', 'separator', 'Блок "Слайдшоу"'),
-  //     Field::make('text', 'aspect_ratio', 'Соотношение сторон'),
-  //     Field::make('media_gallery', 'gallery', 'Фотогалерея'),
-  //   ])
-  //   ->set_category('layout')
-  //   ->set_mode('edit')
-  //   ->set_icon('shortcode')
-  //   ->set_render_callback(function ($fields, $attributes, $inner_blocks) {
-  //     get_template_part('partials/slidwshow', null, [
-  //       'fields' => $fields,
-  //       'attributes' => $attributes,
-  //       'inner_blocks' => $inner_blocks,
-  //     ]);
-  //   });
+  Block::make('partials_slidwshow', 'Блок "Слайдшоу"')
+    ->add_fields([
+      Field::make('separator', 'separator', 'Блок "Слайдшоу"'),
+      Field::make('text', 'aspect_ratio', 'Соотношение сторон'),
+      Field::make('media_gallery', 'gallery', 'Фотогалерея'),
+    ])
+    ->set_category('layout')
+    ->set_mode('edit')
+    ->set_icon('shortcode')
+    ->set_render_callback(function ($fields, $attributes, $inner_blocks) {
+      get_template_part('partials/slidwshow', null, [
+        'fields' => $fields,
+        'attributes' => $attributes,
+        'inner_blocks' => $inner_blocks,
+      ]);
+    });
 }

@@ -56,6 +56,10 @@ body {
   background: #fff;
 }
 
+a {
+  color: inherit;
+}
+
 .container {
   max-width: 100%;
   width: var(--container-width);
@@ -71,12 +75,163 @@ body {
   }
 }
 
+.page-title {
+  font-weight: 500;
+  font-size: 56px;
+  text-align: center;
+  margin: 0;
+  line-height: 1.25;
+}
+
+.page-title + .page-content {
+  margin-top: 56px;
+}
+
+@media (--max-xl) {
+  .page-title {
+    font-size: 44px;
+  }
+  .page-title + .page-content {
+    margin-top: 44px;
+  }
+}
+
+@media (--max-lg) {
+  .page-title {
+    font-size: 40px;
+  }
+  .page-title + .page-content {
+    margin-top: 40px;
+  }
+}
+
+@media (--max-md) {
+  .page-title {
+    font-size: 36px;
+  }
+  .page-title + .page-content {
+    margin-top: 36px;
+  }
+}
+
+@media (--max-sm) {
+  .page-title {
+    font-size: 28px;
+    .page-title + .page-content {
+      margin-top: 28px;
+    }
+  }
+}
+
+.page-content {
+  font-size: 20px;
+  line-height: 1.2;
+  margin: 48px 0;
+
+  @media (--max-lg) {
+    font-size: 18px;
+  }
+
+  @media (--max-md) {
+    font-size: 16px;
+    margin-top: 36px;
+    margin-bottom: 36px;
+  }
+}
+
+.page-content a {
+  color: inherit;
+}
+
+.page-content p {
+  margin: 0;
+}
+
+.page-content * + p {
+  margin-top: 1.5em;
+}
+
+.page-content ul {
+  margin: 0;
+}
+
+.page-content * + ul {
+  margin-top: 1.5em;
+}
+
+.page-content h2 {
+  margin: 0;
+  font-weight: 500;
+}
+
+.page-content * + h2 {
+  margin-top: 1.5em;
+}
+
+.page-content h3 {
+  margin: 0;
+  font-weight: 500;
+}
+
+.page-content * + h3 {
+  margin-top: 1.5em;
+}
+
+.page-content .wp-block-quote {
+  margin: 0;
+}
+
+.page-content * + .wp-block-quote {
+  margin-top: 1.5em;
+}
+
+.page-content .wp-block-slideshow {
+  margin: 0;
+}
+
+.page-content * + .wp-block-slideshow {
+  margin-top: 1.5em;
+}
+
+.page-content .wp-block-image {
+  margin: 0;
+}
+
+.page-content * + .wp-block-image {
+  margin-top: 1.5em;
+}
+
+.page-content .wp-block-columns {
+  margin: 0;
+}
+
+.page-content * + .wp-block-columns {
+  margin-top: 1.5em;
+}
+
+.page-content .wp-block-gallery {
+  margin: 0;
+}
+
+.page-content * + .wp-block-gallery {
+  margin-top: 1.5em;
+}
+
+.page-content .wp-block-buttons {
+  margin: 0;
+}
+
+.page-content * + .wp-block-buttons {
+  margin-top: 1.5em;
+}
+
 .page-layout {
   display: flex;
   flex-direction: column;
+  min-height: 100vh;
 }
 
-.page-layout__body {
+.page-layout__spacer {
   flex-grow: 1;
 }
 

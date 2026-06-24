@@ -4,6 +4,10 @@
     <?php if ($copyright): ?>
     <div class="footer__copyright"><?php echo nl2br(esc_html($copyright)); ?></div>
     <?php endif; ?>
+    <?php $counters = carbon_get_theme_option('crb_theme_counters'); ?>
+    <?php if ($counters): ?>
+    <div class="footer__counters"><?php echo $counters; ?></div>
+    <?php endif; ?>
   </div>
 </section>
 

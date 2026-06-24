@@ -721,6 +721,7 @@ Template Name: Лендинг
     </section>
     <?php endif; ?>
 
+    <?php if (get_the_content()): ?>
     <div class="page-layout__body">
       <div class="container">
         <div class="page-content">
@@ -728,10 +729,9 @@ Template Name: Лендинг
         </div>
       </div>
     </div>
+    <?php endif; ?>
 
     <?php
-    $contacts_title = carbon_get_theme_option('crb_theme_contacts_title');
-    $contacts_subtitle = carbon_get_theme_option('crb_theme_contacts_subtitle');
     $contacts_schedules = carbon_get_theme_option('crb_theme_contacts_schedules');
     $contacts_phone = carbon_get_theme_option('crb_theme_phone_number');
     $contacts_phone_time = carbon_get_theme_option('crb_theme_phone_time');
@@ -742,20 +742,14 @@ Template Name: Лендинг
     $contacts_card_text = carbon_get_theme_option('crb_theme_contacts_card_text');
     ?>
 
-    <?php if ($contacts_title || $contacts_phone || $contacts_card_title): ?>
+    <?php if ($contacts_phone || $contacts_card_title): ?>
     <section class="contacts">
         <div class="container">
-            <?php if ($contacts_title): ?>
-            <div class="contacts__title"><?php echo esc_html($contacts_title); ?></div>
-            <?php endif; ?>
+            <div class="contacts__title">Наши контакты</div>
 
             <div class="contacts__grid">
                 <div class="contacts__info">
-                    <?php if ($contacts_subtitle): ?>
-                    <div class="contacts__subtitle"><?php echo esc_html(
-                      $contacts_subtitle,
-                    ); ?></div>
-                    <?php endif; ?>
+                    <div class="contacts__subtitle">Звоните прямо сейчас:</div>
 
                     <?php if ($contacts_phone): ?>
                     <div class="contacts__phone-group">
