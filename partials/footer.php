@@ -1,86 +1,9 @@
 <section class="footer">
   <div class="container">
-    <div class="footer-layout">
-      <div class="footer-layout__nav">
-        <?php wp_nav_menu([
-          'menu' => 'Меню в подвале',
-          'container' => null,
-          'menu_class' => 'footer-nav',
-        ]); ?>
-      </div>
-      <div class="footer-layout__contacts" itemscope itemtype="https://schema.org/LocalBusiness">
-        <meta itemprop="name" content="Кудеяров Стан">
-        <link itemprop="logo" href="https://kudstan.ru/wp-content/themes/kudstan-wp-theme/assets/logo.svg">
-        <link itemprop="url" href="https://kudstan.ru/">
-
-        <div class="footer-contacts">
-          <div class="footer-contacts__item">
-            <div class="footer-contacts__item-ico">
-              <span class="icon icon-phone"></span>
-            </div>
-            <div class="footer-contacts__item-val" itemprop="telephone">
-              <?php echo carbon_get_theme_option('crb_theme_phone_number'); ?>
-            </div>
-          </div>
-          <div class="footer-contacts__item">
-            <div class="footer-contacts__item-ico">
-              <span class="icon icon-mail"></span>
-            </div>
-            <div class="footer-contacts__item-val" itemprop="email">
-              <?php echo carbon_get_theme_option('crb_theme_email'); ?>
-            </div>
-          </div>
-          <div class="footer-contacts__item footer-contacts__item--address">
-            <div class="footer-contacts__item-ico">
-              <span class="icon icon-marker"></span>
-            </div>
-            <div class="footer-contacts__item-val" itemprop="address">
-              <?php echo carbon_get_theme_option('crb_theme_address'); ?>
-            </div>
-          </div>
-        </div>
-      </div>
-      <div class="footer-layout__no-oferta">
-        <div class="footer-no-oferta">
-          <?php echo carbon_get_theme_option('crb_footer_no_oferta'); ?>
-        </div>
-      </div>
-      <div class="footer-layout__groups">
-        <?php if ($groups = carbon_get_theme_option('crb_footer_groups')): ?>
-          <div class="footer-social">
-            <?php foreach ($groups as $group): ?>
-              <a href="<?php echo $group['link']; ?>" class="footer-social__item" target="_blank">
-                <?php echo $group['icon']; ?>
-              </a>
-            <?php endforeach; ?>
-          </div>
-        <?php endif; ?>
-      </div>
-      <div class="footer-layout__copyright">
-        <div class="footer-copyright">
-          <?php echo carbon_get_theme_option('crb_footer_copyright'); ?>
-        </div>
-      </div>
-      <div class="footer-layout__sitemap">
-        <a href="/sitemap/" class="footer-link">Карта сайта</a>
-      </div>
-      <div class="footer-layout__privacy-policy">
-        <a href="/privacy-policy/" class="footer-link">Политика конфиденциальности</a>
-      </div>
-      <div class="footer-layout__user-agreement">
-        <a href="/user-agreement/" class="footer-link">Пользовательское соглашение</a>
-      </div>
-      <div class="footer-layout__counters">
-        <div class="footer-counters">
-          <?php echo carbon_get_theme_option('crb_footer_counters'); ?>
-        </div>
-      </div>
-      <div class="footer-layout__creator">
-        <a href="https://domenart-studio.ru/" class="footer-creator" target="_blank">
-          <img src="<?php bloginfo('template_url'); ?>/assets/creator.png" alt="creator" width="138" height="30" />
-        </a>
-      </div>
-    </div>
+    <?php $copyright = carbon_get_theme_option('crb_theme_copyright'); ?>
+    <?php if ($copyright): ?>
+    <div class="footer__copyright"><?php echo nl2br(esc_html($copyright)); ?></div>
+    <?php endif; ?>
   </div>
 </section>
 
@@ -91,7 +14,9 @@
       <div class="modal__dialog">
         <button class="modal__close" aria-label="Закрыть" data-modal-close></button>
 
-        <div class="modal__title">Заказать звонок</div>
+        <div class="modal__title">Оставить заявку</div>
+
+        <div class="modal__desc">Заполните форму, мы свяжемся с вами буквально через пару минут.</div>
 
         <form
           action="<?php echo admin_url('admin-ajax.php'); ?>"
@@ -100,9 +25,11 @@
           data-feedback-form-goal=""
           data-feedback-form-action="feedback_form">
           <input type="hidden" name="submitted" value="">
-          <input type="hidden" name="nonce" value="<?php echo wp_create_nonce('feedback-nonce'); ?>">
+          <input type="hidden" name="nonce" value="<?php echo wp_create_nonce(
+            'feedback-nonce',
+          ); ?>">
           <input type="hidden" name="page" value="<?php echo esc_html(get_self_link()); ?>">
-          <input type="hidden" name="subject" value="Заказать звонок">
+          <input type="hidden" name="subject" value="Оставить заявку">
 
           <div class="modal-form__field">
             <label class="input-field">
@@ -115,12 +42,12 @@
 
           <div class="modal-form__submit">
             <button type="submit" class="modal-form__submit-button">
-              Отправить сообщение
+              Жду звонка
             </button>
           </div>
 
           <div class="modal-form__rules">
-            Нажимая «Отправить», вы подтверждаете, что ознакомились с <a href="/privacy-policy/">Политикой конфиденциальности</a> и даете согласие на <a href="/user-agreement/">Обработку персональных данных</a>
+            Заполняя поля формы, Вы даете согласие на обработку персональных данных
           </div>
 
           <div class="modal-form-success">

@@ -1,0 +1,165 @@
+.contacts {
+  padding: 96px 0;
+  background-color: #ffffff;
+}
+
+.contacts__title {
+  font-size: 48px;
+  margin-bottom: 48px;
+}
+
+.contacts__grid {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 64px;
+  align-items: center;
+}
+
+/* ---------- Левая колонка ---------- */
+.contacts__info {
+  display: flex;
+  flex-direction: column;
+  gap: 16px;
+}
+
+.contacts__subtitle {
+  font-size: 24px;
+  line-height: 1;
+  margin-bottom: 8px;
+}
+
+.contacts__phone-group {
+  display: flex;
+  flex-direction: column;
+  gap: 8px;
+  margin-bottom: 10px;
+}
+
+.contacts__phone-schedule {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+  font-size: 14px;
+}
+
+.contacts__dot {
+  flex-shrink: 0;
+  display: inline-block;
+  width: 8px;
+  height: 8px;
+  background-color: #3bb24e;
+  border-radius: 2px;
+  margin-left: 6px;
+  margin-right: 6px;
+}
+
+.contacts__phone {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  text-decoration: none;
+  color: #3bb24e;
+  font-size: 28px;
+  font-weight: 700;
+  transition: opacity 0.2s ease;
+}
+
+.contacts__phone:hover {
+  opacity: 0.8;
+}
+
+.contacts__phone .icon {
+  width: 24px;
+  height: 24px;
+}
+
+.contacts__email,
+.contacts__address {
+  display: flex;
+  align-items: center;
+  gap: 12px;
+  font-size: 16px;
+}
+
+.contacts__email a {
+  color: inherit;
+  text-decoration: none;
+  transition: color 0.2s ease;
+}
+
+.contacts__email a:hover {
+  color: #3bb24e;
+}
+
+.contacts__email .icon,
+.contacts__address .icon {
+  flex-shrink: 0;
+  width: 18px;
+  height: 18px;
+  color: #3bb24e;
+}
+
+/* ---------- Правая колонка (Карточка районов) ---------- */
+.contacts__areas-card {
+  background-color: #ffffff;
+  border-radius: 20px;
+  padding: 40px;
+  box-shadow: 0 8px 40px rgba(0, 0, 0, 0.06);
+}
+
+.contacts__card-title {
+  font-weight: 400;
+  font-size: 20px;
+  margin-bottom: 24px;
+}
+
+.contacts__card-text {
+  font-size: 14px;
+}
+
+/* ================= АДАПТИВНОСТЬ ================= */
+
+/* --max-lg: width < 1024px (Планшеты, переход в одну колонку) */
+@media (--max-lg) {
+  .contacts {
+    padding: 64px 0;
+  }
+
+  .contacts__title {
+    font-size: 40px;
+  }
+
+  .contacts__grid {
+    grid-template-columns: 1fr;
+    gap: 40px;
+  }
+}
+
+/* --max-md: width < 768px (Мобильные устройства) */
+@media (--max-md) {
+  .contacts {
+    padding: 40px 0;
+  }
+
+  .contacts__title {
+    font-size: 28px;
+    margin-bottom: 32px;
+  }
+
+  .contacts__subtitle {
+    font-size: 20px;
+  }
+
+  .contacts__phone {
+    font-size: 24px;
+  }
+
+  .contacts__areas-card {
+    padding: 24px 20px;
+    border-radius: 16px;
+  }
+
+  .contacts__grid {
+    gap: 32px;
+  }
+}
