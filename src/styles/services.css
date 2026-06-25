@@ -101,7 +101,7 @@
   margin-bottom: 32px;
 }
 
-.services__list {
+ul.services__list {
   list-style: none;
   padding: 0;
   margin: 32px;
@@ -228,7 +228,7 @@
   .services__item {
     padding: 8px 0;
   }
-  .services__list {
+  ul.services__list {
     margin: 24px;
   }
   .services__image-wrapper {
@@ -292,7 +292,7 @@
     font-size: 20px;
     margin-bottom: 20px;
   }
-  .services__list {
+  ul.services__list {
     margin: 20px;
   }
   .services__tabs {

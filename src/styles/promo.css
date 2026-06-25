@@ -70,7 +70,7 @@
   flex-direction: column;
 }
 
-.promo__list {
+ul.promo__list {
   list-style: none;
   padding: 0;
   margin: 40px 0;
@@ -151,6 +151,7 @@
   margin-right: 4px;
 }
 
+a.promo__contact-phone,
 .promo__contact-phone {
   display: flex;
   align-items: center;
@@ -163,6 +164,7 @@
   transition: opacity 0.2s ease;
 }
 
+a.promo__contact-phone:hover,
 .promo__contact-phone:hover {
   opacity: 0.8;
 }
@@ -256,7 +258,7 @@
     z-index: 1;
     pointer-events: none;
   }
-  .promo__list {
+  ul.promo__list {
     margin: 32px 0;
   }
 }
