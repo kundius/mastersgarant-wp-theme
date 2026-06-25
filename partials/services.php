@@ -90,10 +90,10 @@ $phone_link = preg_replace('/[^0-9+]/', '', $phone);
               <button type="button" class="services__link"
                 data-callback-button
                 data-callback-button-goal="CALLBACK_SERVICE"
-                data-callback-button-title="Оставить заявку<br> «<?php echo esc_html(
+                data-callback-button-title="Оставить заявку<br> «<?php echo esc_attr(
                   $item['name'],
                 ); ?>»"
-                data-callback-button-subject="Оставить заявку «<?php echo esc_html(
+                data-callback-button-subject="Оставить заявку «<?php echo esc_attr(
                   $item['name'],
                 ); ?>»">
                   Оставить заявку
@@ -105,7 +105,9 @@ $phone_link = preg_replace('/[^0-9+]/', '', $phone);
 
           <div class="services__callback">
             <?php if ($services_callback_title): ?>
-          <div class="services__callback-title"><?php echo nl2br(esc_html($services_callback_title)); ?></div>
+          <div class="services__callback-title"><?php echo nl2br(
+            esc_html($services_callback_title),
+          ); ?></div>
           <?php endif; ?>
             <div class="services__callback-info">
               <div class="services__callback-schedule">
