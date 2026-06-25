@@ -17,7 +17,7 @@ $phone_link = preg_replace('/[^0-9+]/', '', $phone);
         <div class="promo__title"><?php echo nl2br(esc_html($promo_title)); ?></div>
         <?php endif; ?>
         <?php if ($promo_desc): ?>
-        <p class="promo__desc"><?php echo nl2br(esc_html($promo_desc)); ?></p>
+        <div class="promo__desc"><?php echo nl2br(esc_html($promo_desc)); ?></div>
         <?php endif; ?>
       </div>
 

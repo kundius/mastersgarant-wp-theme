@@ -104,9 +104,9 @@ $phone_link = preg_replace('/[^0-9+]/', '', $phone);
           <?php endif; ?>
 
           <div class="services__callback">
-            <div class="services__callback-title"><?php echo nl2br(
-              esc_html($services_callback_title ?: "Вызов мастера и\nдиагностика"),
-            ); ?></div>
+            <?php if ($services_callback_title): ?>
+          <div class="services__callback-title"><?php echo nl2br(esc_html($services_callback_title)); ?></div>
+          <?php endif; ?>
             <div class="services__callback-info">
               <div class="services__callback-schedule">
                 <span class="services__callback-dot"></span> Звоните <?php echo esc_html(

@@ -178,7 +178,7 @@
 }
 
 /* Список преимуществ с галочками */
-.steps__list {
+ul.steps__list {
   list-style: none;
   display: flex;
   flex-direction: column;
@@ -239,7 +239,7 @@
   .steps__list-item {
     font-size: 14px;
   }
-  .steps__list {
+  ul.steps__list {
     gap: 10px;
   }
 }
