@@ -28,7 +28,10 @@ $phone_link = preg_replace('/[^0-9+]/', '', $phone);
     $i = 0;
     foreach ($services_tabs as $tab):
       $i++; ?>
-    <input type="radio" class="services__radio" id="services-tab-<?php echo $i; ?>" name="services-tabs" <?php echo $i === 1 ? 'checked' : ''; ?>>
+    <input type="radio" class="services__radio" id="services-tab-<?php echo $i; ?>" name="services-tabs" <?php echo $i ===
+1
+  ? 'checked'
+  : ''; ?>>
     <?php
     endforeach;
     ?>
@@ -47,7 +50,8 @@ $phone_link = preg_replace('/[^0-9+]/', '', $phone);
         <span class="services__tab-text"><?php echo nl2br(esc_html($tab['label'])); ?></span>
       </label>
       <?php
-      endforeach; ?>
+      endforeach;
+      ?>
     </div>
 
     <div class="services__body">
@@ -57,10 +61,14 @@ $phone_link = preg_replace('/[^0-9+]/', '', $phone);
         foreach ($services_tabs as $tab):
           $i++; ?>
           <?php if ($image_id = $tab['image']): ?>
-          <img class="services__image" src="<?php echo wp_get_attachment_image_url($image_id, 'full'); ?>" alt="" data-tab-image="<?php echo $i; ?>">
+          <img class="services__image" src="<?php echo wp_get_attachment_image_url(
+            $image_id,
+            'full',
+          ); ?>" alt="" data-tab-image="<?php echo $i; ?>">
           <?php endif; ?>
         <?php
-        endforeach; ?>
+        endforeach;
+        ?>
       </div>
 
       <div class="services__content">
@@ -79,17 +87,28 @@ $phone_link = preg_replace('/[^0-9+]/', '', $phone);
             <li class="services__item">
               <span class="services__name"><?php echo esc_html($item['name']); ?></span>
               <span class="services__price"><?php echo esc_html($item['price']); ?></span>
-              <button type="button" class="services__link" data-callback-button>Оставить заявку</button>
+              <button type="button" class="services__link"
+                data-callback-button
+                data-callback-button-goal="CALLBACK_SERVICE"
+                data-callback-button-title='Оставить заявку на "<?php echo esc_html(
+                  $item['name'],
+                ); ?>"'>
+                  Оставить заявку
+                </button>
             </li>
             <?php endforeach; ?>
           </ul>
           <?php endif; ?>
 
           <div class="services__callback">
-            <div class="services__callback-title"><?php echo nl2br(esc_html($services_callback_title ?: "Вызов мастера и\nдиагностика")); ?></div>
+            <div class="services__callback-title"><?php echo nl2br(
+              esc_html($services_callback_title ?: "Вызов мастера и\nдиагностика"),
+            ); ?></div>
             <div class="services__callback-info">
               <div class="services__callback-schedule">
-                <span class="services__callback-dot"></span> Звоните <?php echo esc_html($phone_time); ?>
+                <span class="services__callback-dot"></span> Звоните <?php echo esc_html(
+                  $phone_time,
+                ); ?>
               </div>
               <a href="tel:<?php echo esc_attr($phone_link); ?>" class="services__callback-phone">
                 <span class="icon icon-phone"></span> <?php echo esc_html($phone); ?>
@@ -98,7 +117,8 @@ $phone_link = preg_replace('/[^0-9+]/', '', $phone);
           </div>
         </div>
         <?php
-        endforeach; ?>
+        endforeach;
+        ?>
       </div>
     </div>
 </section>

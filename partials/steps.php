@@ -32,22 +32,28 @@ $steps_phone_link = preg_replace('/[^0-9+]/', '', $steps_phone);
                         <span class="steps__contact-dot"></span>
                         Заявки принимаем <?php echo esc_html($steps_phone_time); ?>
                     </div>
-                    <a href="tel:<?php echo esc_attr($steps_phone_link); ?>" class="steps__contact-phone">
+                    <a href="tel:<?php echo esc_attr(
+                      $steps_phone_link,
+                    ); ?>" class="steps__contact-phone">
                         <span class="icon icon-phone"></span>
                         <?php echo esc_html($steps_phone); ?>
                     </a>
                 </div>
 
-                <div class="steps__card-subtitle"><?php echo esc_html($steps_card1_subtitle); ?></div>
+                <div class="steps__card-subtitle"><?php echo esc_html(
+                  $steps_card1_subtitle,
+                ); ?></div>
 
                 <form
                   action="<?php echo admin_url('admin-ajax.php'); ?>"
                   class="steps__form"
                   data-feedback-form
-                  data-feedback-form-goal=""
+                  data-feedback-form-goal="STEPS_FORM"
                   data-feedback-form-action="feedback_form">
                   <input type="hidden" name="submitted" value="">
-                  <input type="hidden" name="nonce" value="<?php echo wp_create_nonce('feedback-nonce'); ?>">
+                  <input type="hidden" name="nonce" value="<?php echo wp_create_nonce(
+                    'feedback-nonce',
+                  ); ?>">
                   <input type="hidden" name="page" value="<?php echo esc_html(get_self_link()); ?>">
                   <input type="hidden" name="subject" value="Оставить заявку">
 
@@ -57,7 +63,9 @@ $steps_phone_link = preg_replace('/[^0-9+]/', '', $steps_phone);
 
                   <div class="steps__errors" data-feedback-form-errors></div>
 
-                  <button type="submit" class="steps__btn"><?php echo esc_html($steps_card1_btn_text); ?></button>
+                  <button type="submit" class="steps__btn"><?php echo esc_html(
+                    $steps_card1_btn_text,
+                  ); ?></button>
                   <div class="steps__form-note">Заполняя поля формы, Вы даете согласие на обработку персональных данных</div>
 
                   <div class="modal-form-success">

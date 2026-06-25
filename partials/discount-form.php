@@ -22,7 +22,10 @@ $discount_form_image = $args['fields']['discount_form_image'] ?? '';
 
     <div class="discount-form__image-wrapper">
       <?php if ($discount_form_image): ?>
-      <img class="discount-form__image" src="<?php echo wp_get_attachment_image_url($discount_form_image, 'full'); ?>" alt="">
+      <img class="discount-form__image" src="<?php echo wp_get_attachment_image_url(
+        $discount_form_image,
+        'full',
+      ); ?>" alt="">
       <?php endif; ?>
     </div>
 
@@ -31,7 +34,7 @@ $discount_form_image = $args['fields']['discount_form_image'] ?? '';
         action="<?php echo admin_url('admin-ajax.php'); ?>"
         class="discount-form__form"
         data-feedback-form
-        data-feedback-form-goal=""
+        data-feedback-form-goal="DISCOUNT_FORM"
         data-feedback-form-action="feedback_form">
         <input type="hidden" name="submitted" value="">
         <input type="hidden" name="nonce" value="<?php echo wp_create_nonce('feedback-nonce'); ?>">
