@@ -1,6 +1,6 @@
 .services {
-  padding-top: 96px;
-  padding-bottom: 96px;
+  margin-top: 96px;
+  margin-bottom: 96px;
 }
 
 .services__radio {
@@ -281,8 +281,8 @@
 /* --max-md: 640px <= width < 768px */
 @media (--max-md) {
   .services {
-    padding-top: 64px;
-    padding-bottom: 64px;
+    margin-top: 64px;
+    margin-bottom: 64px;
   }
   .services__title {
     font-size: 36px;

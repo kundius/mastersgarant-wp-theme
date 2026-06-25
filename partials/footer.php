@@ -1,5 +1,11 @@
 <section class="footer">
   <div class="container">
+    <?php wp_nav_menu([
+      'theme_location' => 'menu-footer',
+      'container' => null,
+      'menu_class' => 'footer-nav',
+      'depth' => 1,
+    ]); ?>
     <?php $copyright = carbon_get_theme_option('crb_theme_copyright'); ?>
     <?php if ($copyright): ?>
     <div class="footer__copyright"><?php echo nl2br(esc_html($copyright)); ?></div>

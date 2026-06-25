@@ -3,6 +3,40 @@
   background: #272727;
 }
 
+.footer-nav {
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: center;
+  gap: 8px;
+  list-style: none;
+  margin: 0 0 16px;
+  padding: 0;
+}
+
+.footer-nav li {
+  list-style: none;
+}
+
+.footer-nav a {
+  display: block;
+  padding: 6px 14px;
+  color: #9ca3af;
+  text-decoration: none;
+  border-radius: 6px;
+  transition: background 0.2s, color 0.2s;
+  font-size: 14px;
+}
+
+.footer-nav a:hover {
+  background: rgba(255, 255, 255, 0.08);
+  color: #fff;
+}
+
+.footer-nav .current_page_item a {
+  color: #fff;
+  background: rgba(255, 255, 255, 0.06);
+}
+
 .footer__copyright {
   text-align: center;
   font-size: 14px;

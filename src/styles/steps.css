@@ -1,5 +1,5 @@
 .steps {
-  padding: 96px 0;
+  margin: 96px 0;
   background-color: #ffffff;
 }
 
@@ -247,7 +247,7 @@
 /* --max-lg: width < 1024px (Планшеты и небольшие экраны) */
 @media (--max-lg) {
   .steps {
-    padding: 64px 0;
+    margin: 64px 0;
   }
   .steps__title {
     font-size: 40px;
@@ -261,7 +261,7 @@
 /* --max-md: width < 768px (Мобильные устройства) */
 @media (--max-md) {
   .steps {
-    padding: 40px 0;
+    margin: 40px 0;
   }
   .steps__title {
     font-size: 28px;

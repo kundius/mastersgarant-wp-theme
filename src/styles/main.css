@@ -3,6 +3,8 @@
   --container-padding: 12px;
   --container-content: calc(var(--container-width) - (var(--container-padding) * 2));
   --header-height: 96px;
+  --container-free-space: calc(((100vw - var(--container-width)) / 2) / 2);
+  --container-ear: calc(var(--container-free-space) + var(--container-padding));
 
   @media (--min-md) {
     --container-width: 768px;

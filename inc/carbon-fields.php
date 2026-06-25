@@ -79,8 +79,13 @@ function register_carbon_fields_blocks()
       Field::make('complex', 'intro_advantages', 'Преимущества')->add_fields([
         Field::make('textarea', 'text', 'Текст')->set_rows(2),
       ]),
-    ])
-    ->add_tab('Срочный выезд', [
+    ]);
+
+  // ----- Blocks -----
+
+  Block::make('partials_emergency_departure', 'Блок "Срочный выезд"')
+    ->add_fields([
+      Field::make('separator', 'separator', 'Блок "Срочный выезд"'),
       Field::make('textarea', 'emergency_departure_title', 'Заголовок')->set_rows(3),
       Field::make('text', 'emergency_departure_speed', 'Скорость (текст)'),
       Field::make('textarea', 'emergency_departure_desc', 'Описание')->set_rows(5),
@@ -90,7 +95,20 @@ function register_carbon_fields_blocks()
       Field::make('text', 'emergency_departure_discount_value', 'Скидка / Значение'),
       Field::make('image', 'emergency_departure_bg_image', 'Фоновая картинка'),
     ])
-    ->add_tab('Преимущества', [
+    ->set_category('layout')
+    ->set_mode('edit')
+    ->set_icon('shortcode')
+    ->set_render_callback(function ($fields, $attributes, $inner_blocks) {
+      get_template_part('partials/emergency-departure', null, [
+        'fields' => $fields,
+        'attributes' => $attributes,
+        'inner_blocks' => $inner_blocks,
+      ]);
+    });
+
+  Block::make('partials_features', 'Блок "Преимущества"')
+    ->add_fields([
+      Field::make('separator', 'separator', 'Блок "Преимущества"'),
       Field::make('textarea', 'features_title', 'Заголовок')->set_rows(2),
       Field::make('complex', 'features_items', 'Преимущества')->add_fields([
         Field::make('select', 'icon_type', 'Тип иконки')->add_options([
@@ -101,14 +119,39 @@ function register_carbon_fields_blocks()
         Field::make('textarea', 'text', 'Текст преимущества')->set_rows(2),
       ]),
     ])
-    ->add_tab('Форма со скидкой', [
+    ->set_category('layout')
+    ->set_mode('edit')
+    ->set_icon('shortcode')
+    ->set_render_callback(function ($fields, $attributes, $inner_blocks) {
+      get_template_part('partials/features', null, [
+        'fields' => $fields,
+        'attributes' => $attributes,
+        'inner_blocks' => $inner_blocks,
+      ]);
+    });
+
+  Block::make('partials_discount_form', 'Блок "Форма со скидкой"')
+    ->add_fields([
+      Field::make('separator', 'separator', 'Блок "Форма со скидкой"'),
       Field::make('textarea', 'discount_form_title', 'Заголовок')->set_rows(2),
       Field::make('textarea', 'discount_form_desc', 'Описание')->set_rows(5),
       Field::make('text', 'discount_form_btn_text', 'Текст кнопки'),
-
       Field::make('image', 'discount_form_image', 'Изображение (мультиметр)'),
     ])
-    ->add_tab('Услуги', [
+    ->set_category('layout')
+    ->set_mode('edit')
+    ->set_icon('shortcode')
+    ->set_render_callback(function ($fields, $attributes, $inner_blocks) {
+      get_template_part('partials/discount-form', null, [
+        'fields' => $fields,
+        'attributes' => $attributes,
+        'inner_blocks' => $inner_blocks,
+      ]);
+    });
+
+  Block::make('partials_services', 'Блок "Услуги"')
+    ->add_fields([
+      Field::make('separator', 'separator', 'Блок "Услуги"'),
       Field::make('textarea', 'services_title', 'Заголовок секции')->set_rows(2),
       Field::make('textarea', 'services_callback_title', 'Текст вызова мастера')->set_rows(2),
       Field::make('complex', 'services_tabs', 'Вкладки услуг')->add_fields([
@@ -121,7 +164,42 @@ function register_carbon_fields_blocks()
         ]),
       ]),
     ])
-    ->add_tab('Почему выбирают нас', [
+    ->set_category('layout')
+    ->set_mode('edit')
+    ->set_icon('shortcode')
+    ->set_render_callback(function ($fields, $attributes, $inner_blocks) {
+      get_template_part('partials/services', null, [
+        'fields' => $fields,
+        'attributes' => $attributes,
+        'inner_blocks' => $inner_blocks,
+      ]);
+    });
+
+  Block::make('partials_promo', 'Блок "Предложение"')
+    ->add_fields([
+      Field::make('separator', 'separator', 'Блок "Предложение"'),
+      Field::make('textarea', 'promo_title', 'Заголовок')->set_rows(3),
+      Field::make('textarea', 'promo_desc', 'Описание')->set_rows(5),
+      Field::make('textarea', 'promo_right_title', 'Дополнительный заголовок')->set_rows(2),
+      Field::make('textarea', 'promo_right_desc', 'Дополнительное описание')->set_rows(2),
+      Field::make('complex', 'promo_check_items', 'Пункты с галочкой')->add_fields([
+        Field::make('textarea', 'text', 'Текст')->set_rows(2),
+      ]),
+    ])
+    ->set_category('layout')
+    ->set_mode('edit')
+    ->set_icon('shortcode')
+    ->set_render_callback(function ($fields, $attributes, $inner_blocks) {
+      get_template_part('partials/promo', null, [
+        'fields' => $fields,
+        'attributes' => $attributes,
+        'inner_blocks' => $inner_blocks,
+      ]);
+    });
+
+  Block::make('partials_advantages', 'Блок "Почему выбирают нас"')
+    ->add_fields([
+      Field::make('separator', 'separator', 'Блок "Почему выбирают нас"'),
       Field::make('textarea', 'advantages_title', 'Заголовок')->set_rows(2),
       Field::make('textarea', 'advantages_caption_title', 'Подпись / Заголовок')->set_rows(2),
       Field::make('textarea', 'advantages_caption_desc', 'Подпись / Описание')->set_rows(3),
@@ -131,16 +209,20 @@ function register_carbon_fields_blocks()
         Field::make('textarea', 'desc', 'Описание')->set_rows(2),
       ]),
     ])
-    ->add_tab('Предложение', [
-      Field::make('textarea', 'promo_title', 'Заголовок')->set_rows(3),
-      Field::make('textarea', 'promo_desc', 'Описание')->set_rows(5),
-      Field::make('textarea', 'promo_right_title', 'Дополнительный заголовок')->set_rows(2),
-      Field::make('textarea', 'promo_right_desc', 'Дополнительное описание')->set_rows(2),
-      Field::make('complex', 'promo_check_items', 'Пункты с галочкой')->add_fields([
-        Field::make('textarea', 'text', 'Текст')->set_rows(2),
-      ]),
-    ])
-    ->add_tab('Команда', [
+    ->set_category('layout')
+    ->set_mode('edit')
+    ->set_icon('shortcode')
+    ->set_render_callback(function ($fields, $attributes, $inner_blocks) {
+      get_template_part('partials/advantages', null, [
+        'fields' => $fields,
+        'attributes' => $attributes,
+        'inner_blocks' => $inner_blocks,
+      ]);
+    });
+
+  Block::make('partials_team', 'Блок "Команда"')
+    ->add_fields([
+      Field::make('separator', 'separator', 'Блок "Команда"'),
       Field::make('textarea', 'team_title', 'Заголовок (HTML разрешён)')->set_rows(3),
       Field::make('textarea', 'team_subtitle', 'Подзаголовок')->set_rows(2),
       Field::make('text', 'team_stat_years_number', 'Статистика / Лет опыта (число)'),
@@ -152,7 +234,20 @@ function register_carbon_fields_blocks()
       ]),
       Field::make('textarea', 'team_bottom_text', 'Текст внизу')->set_rows(4),
     ])
-    ->add_tab('Этапы работы', [
+    ->set_category('layout')
+    ->set_mode('edit')
+    ->set_icon('shortcode')
+    ->set_render_callback(function ($fields, $attributes, $inner_blocks) {
+      get_template_part('partials/team', null, [
+        'fields' => $fields,
+        'attributes' => $attributes,
+        'inner_blocks' => $inner_blocks,
+      ]);
+    });
+
+  Block::make('partials_steps', 'Блок "Этапы работы"')
+    ->add_fields([
+      Field::make('separator', 'separator', 'Блок "Этапы работы"'),
       Field::make('textarea', 'steps_title', 'Заголовок')->set_rows(3),
       Field::make('text', 'steps_card1_badge', 'Карточка 1 / Бейдж'),
       Field::make('textarea', 'steps_card1_title', 'Карточка 1 / Заголовок')->set_rows(2),
@@ -166,53 +261,34 @@ function register_carbon_fields_blocks()
           Field::make('text', 'text', 'Текст'),
         ]),
       ]),
-    ]);
+    ])
+    ->set_category('layout')
+    ->set_mode('edit')
+    ->set_icon('shortcode')
+    ->set_render_callback(function ($fields, $attributes, $inner_blocks) {
+      get_template_part('partials/steps', null, [
+        'fields' => $fields,
+        'attributes' => $attributes,
+        'inner_blocks' => $inner_blocks,
+      ]);
+    });
 
-  Container::make('post_meta', 'Услуги и цены')
-    ->where('post_type', '=', 'page')
-    ->where('post_template', '=', 'templates/services.php')
-    ->add_tab('Услуги и цены', [
-      Field::make('complex', 'services_tabs', 'Вкладки услуг')->add_fields([
-        Field::make('textarea', 'label', 'Ярлык вкладки')->set_rows(2),
-        Field::make('textarea', 'subtitle', 'Заголовок вкладки')->set_rows(2),
-        Field::make('image', 'image', 'Изображение'),
-        Field::make('complex', 'items', 'Услуги')->add_fields([
-          Field::make('text', 'name', 'Название'),
-          Field::make('text', 'price', 'Цена'),
-        ]),
-      ]),
-    ]);
-
-  Container::make('post_meta', 'О нас')
-    ->where('post_type', '=', 'page')
-    ->where('post_template', '=', 'templates/about.php')
-    ->add_tab('Команда', [
-      Field::make('textarea', 'team_title', 'Заголовок (HTML разрешён)')->set_rows(3),
-      Field::make('textarea', 'team_subtitle', 'Подзаголовок')->set_rows(2),
-      Field::make('text', 'team_stat_years_number', 'Статистика / Лет опыта (число)'),
-      Field::make('text', 'team_stat_years_label', 'Статистика / Лет опыта (подпись)'),
-      Field::make('text', 'team_stat_clients_number', 'Статистика / Клиентов (число)'),
-      Field::make('text', 'team_stat_clients_label', 'Статистика / Клиентов (подпись)'),
-      Field::make('complex', 'team_gallery', 'Фото мастеров')->add_fields([
-        Field::make('image', 'image', 'Фото'),
-      ]),
-      Field::make('textarea', 'team_bottom_text', 'Текст внизу')->set_rows(4),
-    ]);
-
-  // Block::make('partials_services', 'Блок "Выбирайте отдых для себя"')
-  //   ->add_fields([
-  //     Field::make('separator', 'separator', 'Блок "Выбирайте отдых для себя"'),
-  //   ])
-  //   ->set_category('layout')
-  //   ->set_mode('edit')
-  //   ->set_icon('shortcode')
-  //   ->set_render_callback(function ($fields, $attributes, $inner_blocks) {
-  //     get_template_part('partials/services', null, [
-  //       'fields' => $fields,
-  //       'attributes' => $attributes,
-  //       'inner_blocks' => $inner_blocks,
-  //     ]);
-  //   });
+  Block::make('partials_contacts', 'Блок "Контакты"')
+    ->add_fields([
+      Field::make('separator', 'separator', 'Блок "Контакты"'),
+      Field::make('text', 'contacts_title', 'Заголовок'),
+      Field::make('text', 'contacts_subtitle', 'Подзаголовок'),
+    ])
+    ->set_category('layout')
+    ->set_mode('edit')
+    ->set_icon('shortcode')
+    ->set_render_callback(function ($fields, $attributes, $inner_blocks) {
+      get_template_part('partials/contacts', null, [
+        'fields' => $fields,
+        'attributes' => $attributes,
+        'inner_blocks' => $inner_blocks,
+      ]);
+    });
 
   Block::make('partials_slidwshow', 'Блок "Слайдшоу"')
     ->add_fields([

@@ -1,5 +1,5 @@
 .features {
-  padding: 96px 0;
+  margin: 96px 0;
 }
 
 .features__title {
@@ -58,7 +58,7 @@
 /* --max-xl: 1024px <= width < 1280px (Перенос на 4 колонки) */
 @media (--max-xl) {
   .features {
-    padding: 64px 0;
+    margin: 64px 0;
   }
   .features__title {
     font-size: 40px;
@@ -84,7 +84,7 @@
 /* --max-md: 640px <= width < 768px (Перенос на 2 колонки) */
 @media (--max-md) {
   .features {
-    padding: 48px 0;
+    margin: 48px 0;
     border-radius: 24px;
   }
   .features__title {

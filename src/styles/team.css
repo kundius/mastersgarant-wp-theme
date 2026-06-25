@@ -1,5 +1,5 @@
 .team {
-  padding: 96px 0;
+  margin: 96px 0;
   background-color: #ffffff;
 }
 
@@ -79,7 +79,7 @@
 /* --max-lg: width < 1024px (Планшеты и небольшие экраны) */
 @media (--max-lg) {
   .team {
-    padding: 64px 0;
+    margin: 64px 0;
   }
 
   .team__title {
@@ -104,7 +104,7 @@
 /* --max-md: width < 768px (Мобильные устройства) */
 @media (--max-md) {
   .team {
-    padding: 48px 0;
+    margin: 48px 0;
   }
 
   .team__title {
