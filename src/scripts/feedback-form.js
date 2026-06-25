@@ -26,12 +26,15 @@ export function applyFeedbackForm(form) {
           form.setAttribute('data-feedback-form-status', 'success')
           form.reset()
 
-          if (form.dataset.feedbackFormGoal && typeof ym !== 'undefined') {
+          if (typeof ym !== 'undefined') {
             const elYmId = document.querySelector('[data-ym-id]')
             if (elYmId && elYmId.dataset.ymId) {
-              ym(elYmId.dataset.ymId, 'reachGoal', 'SEND_FORM')
-              ym(elYmId.dataset.ymId, 'reachGoal', form.dataset.feedbackFormGoal)
-              console.log('goal', elYmId.dataset.ymId, form.dataset.feedbackFormGoal)
+              ym(elYmId.dataset.ymId, 'reachGoal', 'FORM_SENDED')
+              console.log('goal', elYmId.dataset.ymId, 'FORM_SENDED')
+              if (form.dataset.feedbackFormGoal) {
+                ym(elYmId.dataset.ymId, 'reachGoal', form.dataset.feedbackFormGoal)
+                console.log('goal', elYmId.dataset.ymId, form.dataset.feedbackFormGoal)
+              }
             }
           }
 
