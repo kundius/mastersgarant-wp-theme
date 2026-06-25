@@ -39,7 +39,7 @@ function feedback_form_callback()
     $body = implode("\n", $rows);
     $subject = $_POST['subject'];
     wp_mail($email_to, $subject, $body);
-    wp_send_json_success(['success' => true, '$email_to' => $$email_to]);
+    wp_send_json_success(['success' => true, '$email_to' => $email_to]);
   }
   wp_die();
 }
