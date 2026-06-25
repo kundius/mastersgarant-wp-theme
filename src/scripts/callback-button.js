@@ -18,7 +18,7 @@ export function applyCallbackButton(el) {
     const subject = el.dataset.callbackButtonSubject
 
     if (goal) form.dataset.feedbackFormGoal = goal
-    if (title) titleEl.innerHTML = title
+    if (title) titleEl.innerHTML = title.replace(/\\n/g, '<br>')
     if (subject) subjectInput.value = subject
 
     MicroModal.show('modal-callback', {
