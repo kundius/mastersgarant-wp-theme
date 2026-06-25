@@ -66,15 +66,13 @@ Template Name: Лендинг
               <span class="intro__button-icon"></span>
               <span class="intro__button-text">Рассчитать стоимость<br> и получить скидку</span>
             </button>
-            <?php $phone = carbon_get_theme_option('crb_theme_phone_number'); ?>
-            <a href="tel:<?php echo preg_replace(
-              '/[^0-9+]/',
-              '',
-              $phone,
-            ); ?>" class="intro__button intro__button--max">
+            <?php $max_link = carbon_get_theme_option('crb_theme_max_link'); ?>
+            <?php if ($max_link): ?>
+            <a href="<?php echo esc_url($max_link); ?>" class="intro__button intro__button--max">
               <span class="intro__button-icon icon icon-max"></span>
               <span class="intro__button-text">Вызов мастера</span>
             </a>
+            <?php endif; ?>
           </div>
         </div>
       </div>
