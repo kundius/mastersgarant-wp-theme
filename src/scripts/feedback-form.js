@@ -29,6 +29,7 @@ export function applyFeedbackForm(form) {
           if (form.dataset.feedbackFormGoal && typeof ym !== 'undefined') {
             const elYmId = document.querySelector('[data-ym-id]')
             if (elYmId && elYmId.dataset.ymId) {
+              ym(elYmId.dataset.ymId, 'reachGoal', 'SEND_FORM')
               ym(elYmId.dataset.ymId, 'reachGoal', form.dataset.feedbackFormGoal)
               console.log('goal', elYmId.dataset.ymId, form.dataset.feedbackFormGoal)
             }
