@@ -9,25 +9,24 @@ export function applyCallbackButton(el) {
     const titleEl = modal.querySelector('.modal__title')
     const subjectInput = modal.querySelector('input[name="subject"]')
 
-    const origTitle = titleEl.textContent
+    const origTitle = titleEl.innerHTML
     const origSubject = subjectInput.value
     const origGoal = form.dataset.feedbackFormGoal
 
     const goal = el.dataset.callbackButtonGoal
     const title = el.dataset.callbackButtonTitle
+    const subject = el.dataset.callbackButtonSubject
 
     if (goal) form.dataset.feedbackFormGoal = goal
-    if (title) {
-      titleEl.textContent = title
-      subjectInput.value = title
-    }
+    if (title) titleEl.innerHTML = title
+    if (subject) subjectInput.value = subject
 
     MicroModal.show('modal-callback', {
       awaitOpenAnimation: true,
       awaitCloseAnimation: true,
       closeTrigger: 'data-modal-close',
       onClose: () => {
-        titleEl.textContent = origTitle
+        titleEl.innerHTML = origTitle
         subjectInput.value = origSubject
         form.dataset.feedbackFormGoal = origGoal
       },

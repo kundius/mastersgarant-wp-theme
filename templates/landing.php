@@ -62,7 +62,7 @@ Template Name: Лендинг
           <?php endif; ?>
 
           <div class="intro__buttons">
-            <button type="button" data-callback-button data-callback-button-goal="CALLBACK_INTRO" class="intro__button intro__button--calc">
+            <button type="button" data-callback-button data-callback-button-goal="CALLBACK_INTRO" data-callback-button-title="Рассчитать стоимость<br> и получить скидку" data-callback-button-subject="Рассчитать стоимость и получить скидку" class="intro__button intro__button--calc">
               <span class="intro__button-icon"></span>
               <span class="intro__button-text">Рассчитать стоимость<br> и получить скидку</span>
             </button>
