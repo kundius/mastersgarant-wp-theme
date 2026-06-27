@@ -10,3 +10,4 @@ include 'inc/carbon-fields.php';
 include 'inc/theme.php';
 include 'inc/assets.php';
 include 'inc/menu.php';
+include 'inc/seo.php';
